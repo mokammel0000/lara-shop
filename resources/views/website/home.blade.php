@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
 
-		<title>Supermarket - Neoncart HTML5 Template</title>
+		<title>Home Page</title>
 		<link rel="shortcut icon" href="assets/images/logo/favourite_icon_01.png">
 
 		<!-- fraimwork - css include -->
@@ -53,8 +53,6 @@
 		<!-- <div id="preloader"></div> -->
 		<!-- preloader - end -->
 
-
-		
 		<header class="header_section supermarket_header bg-white clearfix">
 			<div class="header_top text-white clearfix">
 				<div class="container maxw_1460">
@@ -556,11 +554,8 @@
 			</div>
 		</header>
 		
-
-
 		<main>
 
-			
 			@include('website.partials.sidebar')
 			
 			@include('website.partials.slider')
