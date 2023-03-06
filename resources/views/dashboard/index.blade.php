@@ -1,7 +1,7 @@
 @extends('dashboard.layout')
 
 @section('title')
-Admin Dashboard
+Dashboard
 @endsection()
 
 

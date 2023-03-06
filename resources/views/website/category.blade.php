@@ -1,8 +1,11 @@
+
+
 @extends('website.layout')
 
 @section('title')
 Categories
 @endsection
+
 @section('content')
 			<!-- product_section - start
 			================================================== -->
@@ -12,6 +15,7 @@ Categories
 						<div class="row align-items-center justify-content-lg-between">
 							<div class="col-lg-6 col-md-6">
 								<p class="result_text mb-0">Showing 1 to 10 of 243 products</p>
+								
 							</div>
 
 							<div class="col-lg-6 col-md-6">
