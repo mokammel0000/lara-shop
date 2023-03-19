@@ -17,7 +17,7 @@ Edit Category
 
 
 <!-- DataTales Example -->
-<form action="{{url('admin/categories/'. $selectedCategory->id)}}" method="POST" enctype="multipart/form-data">
+<form action="{{url('admin/categories/'. $category->id)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="card shadow mb-4">
@@ -40,7 +40,7 @@ Edit Category
             
             <div class="form-group">
                 <label>Category Name</label>
-                <input type="text" name="name" value="{{$selectedCategory->name}}"
+                <input type="text" name="name" value="{{$category->name}}"
                     class="form-control" >
                 @error('name')
                     <small class="text-danger"> {{$message}} </small>
@@ -49,7 +49,7 @@ Edit Category
                        
             <div class="form-group">
                 <label>Icon</label>
-                <input type="text" name="icon" value="{{$selectedCategory->icon}}"
+                <input type="text" name="icon" value="{{$category->icon}}"
                     class="form-control" >
                 @error('icon')
                     <small class="text-danger"> {{$message}} </small>
@@ -59,13 +59,13 @@ Edit Category
             <div class="form-group">
                 <label>photo</label>
                 <div class="custom-file mb-3">
-                    <input type="file"  name="photo" class="custom-file-input" value="{{asset($selectedCategory->photo)}}" >
-                    <label class="custom-file-label" >{{asset($selectedCategory->photo)}}</label>
+                    <input type="file"  name="photo" class="custom-file-input" value="{{asset($category->photo)}}" >
+                    <label class="custom-file-label" >{{asset($category->photo)}}</label>
                     @error('photo')
                         <small class="text-danger"> {{$message}} </small>
                     @enderror
                 </div>   
-                <img src="{{asset($selectedCategory->photo)}}" width="200px">             
+                <img src="{{asset($category->photo)}}" width="200px">             
             </div>
 
 

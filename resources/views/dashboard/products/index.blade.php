@@ -1,17 +1,17 @@
 @extends('dashboard.layout')
 
 @section('title')
-Categories
+    Products
 @endsection()
 
 
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Categories</h1>
-    <a href="{{url('admin/categories/create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+    <h1 class="h3 mb-0 text-gray-800">Products</h1>
+    <a href="{{url('admin/products/create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
         <i class="fas fa-download fa-sm text-white-50"> </i>
-        New Category
+        New Product
     </a>
 </div>
 
@@ -19,7 +19,7 @@ Categories
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">
-            Categories List
+            Products List
         </h6>
     </div>
     <div class="card-body">
@@ -37,41 +37,39 @@ Categories
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Photo</th>
-                        <th>Icon</th>
+                        <th>Category</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
 
 
-                {{-- @if ($cats->all() != null) --}}
-                @if ($cats->isNotEmpty())
+                {{-- @if ($products->all() != null) --}}
+                @if ($products->isNotEmpty())
                     <tbody>
-                        @foreach ($cats as $category)                        
+                        @foreach ($products as $product)                        
                         <tr>
-                            <td>{{$category->name}}</td>
+                            <td>{{$product->name}}</td> 
+                            
                             <td>
-                                <img src="{{asset($category->photo) }}" alt="" style="width: 200px; height : 150px">
-                                {{-- <img src="{{url($category->photo) }}" alt=""> --}}
+                                {{$product->category->name}}
+                                <i class="fas fa-{{$product->category->icon}}"></i>
                             </td>
-                            <td>
-                                <i class="fas fa-{{ $category->icon}} "> </i>
-                            </td>
-                            <td>
-                                <form action="{{ url('admin/categories/'. $category->id) }}" method="POST">
 
-                                    <a href="{{ url("admin/categories/$category->id") }}" class="btn btn-sm btn-info"> View </a>
+                            <td>
+                                <form action="{{ url('admin/products/'. $product->id) }}" method="POST">
+
+                                    <a href="{{ url("admin/products/$product->id") }}" class="btn btn-sm btn-info"> View </a>
                                     
-                                           {{--  {{url('admin/categories/'. $category->id.'/'.'edit/')}} --}}
-                                    <a href="{{ url("admin/categories/$category->id/edit") }}" class="btn btn-sm btn-warning"> Edit </a>
+                                           {{--  {{url('admin/products/'. $product->id.'/'.'edit/')}} --}}
+                                    <a href="{{ url("admin/products/$product->id/edit") }}" class="btn btn-sm btn-warning"> Edit </a>
 
 
                                     @csrf
                                     @method('Delete')
                                     <button class="btn btn-sm btn-danger" type="submit"> Delete</button>
                                 </form>
-
                             </td>
+
                         </tr>
                         @endforeach
                     </tbody>
@@ -79,9 +77,9 @@ Categories
                     <tr>
                         <td colspan="4">
                             <div class="alert alert-warning" role="alert">
-                                There is no categories Yet, U can Add a new Cateory from here.....
-                                <a href="/admin/categories/create">
-                                    New Category
+                                There is no products Yet, U can Add a new Product from here.....
+                                <a href="/admin/products/create">
+                                    New Product
                                 </a>
                             </div>
                         </td>
@@ -89,7 +87,7 @@ Categories
                 @endif
             </table>
 
-            {{$cats->links()}}
+            {{$products->links()}}
 
 
         </div>       

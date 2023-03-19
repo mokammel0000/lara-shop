@@ -1,11 +1,13 @@
 @extends('website.layout')
 
 @section('title')
-Home Page
+	Home Page
 @endsection
+
 @section('buttom_header')
-@include('website.partials.headerButtom')
+	@include('website.partials.headerButtom')
 @endsection
+
 @section('content')
 
 			<!-- sidebar mobile menu & sidebar cart - start

@@ -33,8 +33,9 @@
             <div class="row align-items-center justify-content-lg-between">
                 <div class="col-lg-3">
                     <div class="brand_logo">
-                        <a class="brand_link" href="index.html">
-                            <img src="assets/images/logo/logo_18_1x.png" srcset="assets/images/logo/logo_18_2x.png 2x" alt="logo_not_found">
+                        <a class="brand_link" href="{{url('/')}}">
+                            <img src="{{asset('assets/images/logo/logo_18_1x.png')}}"
+                             srcset="{{asset('assets/images/logo/logo_18_2x.png 2x')}}" alt="logo_not_found">
                         </a>
 
                         <ul class="mh_action_btns ul_li clearfix">

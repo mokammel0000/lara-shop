@@ -21,15 +21,19 @@
     <!-- Divider -->
     <hr class="sidebar-divider">
 
-    <!-- Heading -->
-    <div class="sidebar-heading">
-        Interface
-    </div>
-
     <li class="nav-item active">
         <a class="nav-link" href="{{url('/admin/categories')}}">
             <i class="fas fa-fw fa-bars"></i>
             <span>Categories</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <li class="nav-item active">
+        <a class="nav-link" href="{{url('/admin/products')}}">
+            <i class="fas fa-fw fa-archive"></i>
+            <span>Products</span></a>
     </li>
 
     <!-- Nav Item - Pages Collapse Menu -->

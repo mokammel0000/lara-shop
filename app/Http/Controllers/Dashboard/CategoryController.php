@@ -11,8 +11,14 @@ class CategoryController extends Controller
     
     public function index()
     {
-        $cats = Category::all();  //all the resulsts will be showen in the same page
+        // $cats = Category::all();  //all the resulsts will be showen in the same page
+        // $cats = Category::get();
+        // $cats = Category::where('photo', '!=', 'null')->get();   
+        // $cats = Category::whereNotNull('photo')->get();
+        // $cats = Category::whereNull('photo')->get();
+        // $cats = Category::get();
 
+        
         $cats = Category::paginate(10);
 
         return view('dashboard.categories.index', compact('cats'));
@@ -20,11 +26,24 @@ class CategoryController extends Controller
 
     public function create()
     {
+        // $categories = Category::all();             //there is no condition with it
+        // $categories = Category::get();                //if u want to make a condition before fetching data...
+        // $categories = Category::where('id', '2')->get();                //if u want to make a condition before fetching data...
+        // $categories = Category::where('photo', '!=', 'null')->get();
+        // $categories = Category::whereNotNull('photo')->get();
+        // $categories = Category::whereNull('photo')->get();
+
         return view('dashboard.categories.create');
     }
 
     public function store(Request $request)
     {
+
+        // dd($_GET);
+        // dd($_POST);
+        // dd($request->all()); //get the post and request fields from the form
+        // dd($request->getMethod());
+        // dd($request->content);
 
         // $this->validate();
         $request->validate([
@@ -44,11 +63,19 @@ class CategoryController extends Controller
             $request->file('photo')->move('uploads', $fileName);
             // $request->photo->move('uploads', 'test.jpg');
         }
-        $newCategory = new Category();
-        $newCategory->name = $request->name;
-        $newCategory->icon = $request->icon;
-        $newCategory->photo = $filePath;
-        $newCategory->save();
+
+        // $newCategory = new Category();
+        // $newCategory->name = $request->name;
+        // $newCategory->icon = $request->icon;
+        // $newCategory->photo = $filePath;
+        // $newCategory->save();
+
+        //------------------------------------------------
+        //INSERT USING MASS ASSINGMENT
+
+        $inputs = $request->all();
+        $inputs['photo'] = $filePath;
+        $newCategory = Category::create($inputs);
 
         //===========================================================
         //              GO TO A VIEW
@@ -67,18 +94,18 @@ class CategoryController extends Controller
         return back()->with('success', 'The New Category has been saved succesfully');
     }
 
-    public function show(string $id)
+    public function show(Category $category)
     {
-        //
+        return view('dashboard.categories.show', compact('category'));
     }
 
     public function edit(string $id)
     {
-        $selectedCategory = Category::find($id);
-        return view('dashboard.categories.edit', compact('selectedCategory'));
+        $category = Category::find($id);
+        return view('dashboard.categories.edit', compact('category'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, Category $category)
     {
         $request->validate([
             'name'=>'required',
@@ -93,28 +120,38 @@ class CategoryController extends Controller
             $request->file('photo')->move('uploads', $fileName);
         }
 
-        $selectedCategory = Category::find($id);
-        $selectedCategory->name = $request->name;
-        $selectedCategory->icon = $request->icon;
+        // $category = Category::find($id);
+        // $category->name = $request->name;
+        // $category->icon = $request->icon;
 
+        // if($request->hasFile('photo')){
+        //     $category->photo = $filePath;
+        // }
+
+        // $category->save();
+        
+
+        //------------------------------------------------
+        //UPDATING USING MASS ASSINGMENT
+
+        // $category = Category::find($id);   //we don't need it because we have used Model Bind
+        $inputs = $request->all();
         if($request->hasFile('photo')){
-            $selectedCategory->photo = $filePath;
+            $inputs['photo'] = $filePath;
+
         }
-
-        $selectedCategory->save();
-
-        // dd($filePath);
-        // dd($request->all());
+        $category->update($inputs);
 
         return back()->with('uploaded', 'The Category has been Uploaded succesfully');
     }
 
     public function destroy(string $id)
     {
-        $selectedCategory = Category::find($id);
+        $category = Category::find($id);
         
         Category::destroy($id);
 
-        return back()->with('deleted', 'The '.$selectedCategory->name.' Category has been deleted sucssesfully....');
+        return back()->with('deleted', 'The '.$category->name.' Category has been deleted sucssesfully....');
+        return redirect()->back()->withErrors($validator)->withInput();     
     }
 }
