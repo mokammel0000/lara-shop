@@ -62,8 +62,14 @@ Categories
 										<img src="{{ $product->featured_photo}}" alt="image_not_found"/>
 
 										<ul class="product_action_btns ul_li_center clearfix">
-											<li><a href="#!"><i class="fal fa-search"></i></a></li>
-											<li><a href="#!"><i class="fas fa-shopping-cart"></i></a></li>
+											<li>
+												{{-- <a href="{{url("product/$product->id")}}" style="width: 150px;"> --}}
+												<a href="{{url('product/'.$product->id)}}" style="width: 150px;">
+													<i class="fal fa-eye" ></i>
+													Details
+												</a>
+											</li>
+											{{-- <li><a href="#!"><i class="fas fa-shopping-cart"></i></a></li> --}}
 										</ul>
 										<ul class="product_label ul_li text-uppercase clearfix">
 											<li class="bg_sports_red">50% Off</li>

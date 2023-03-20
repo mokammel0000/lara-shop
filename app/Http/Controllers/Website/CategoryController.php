@@ -12,7 +12,7 @@ class CategoryController extends Controller
     public function show($id)
     {
         // $category = Category::with('products')->find($id);
-        // using the last query we can't paginate the selected records...
+        // using the last query we can't paginate the products ...
 
         $category = Category::find($id);
         
