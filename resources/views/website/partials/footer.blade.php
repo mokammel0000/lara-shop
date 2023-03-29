@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="item_content">
                                     <p class="mb-0">
-                                        1789 Street Name, City Name, United States
+                                        15 Belqas Street, Talka, Egypt
                                     </p>
                                 </div>
                             </li>
@@ -84,8 +84,8 @@
                                     <i class="fas fa-phone-alt"></i>
                                 </div>
                                 <div class="item_content">
-                                    <p class="mb-0">0092 - 123 455 789</p>
-                                    <p class="mb-0">+123 958 789</p>
+                                    <p class="mb-0">0020110040580</p>
+                                    <p class="mb-0">0020106506140</p>
                                 </div>
                             </li>
                             <li>
@@ -93,8 +93,8 @@
                                     <i class="fas fa-envelope"></i>
                                 </div>
                                 <div class="item_content">
-                                    <p class="mb-0">Email: support@uxnaqvi.com</p>
-                                    <p class="mb-0">9AM-5PM, Mon - Sat, GMT+3</p>
+                                    <p class="mb-0">Email: support@larashop.com</p>
+                                    <p class="mb-0">9AM-5PM, Sat - THR, GMT+2</p>
                                 </div>
                             </li>
                         </ul>
