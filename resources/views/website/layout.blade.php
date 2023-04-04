@@ -32,8 +32,13 @@
 		<!-- jquery ui - css include -->
 		<link rel="stylesheet" type="text/css" href="{{asset('assets/css/jquery-ui.css')}}">
 
+		<!-- jquery Toast Plugin - css include -->
+		<link rel="stylesheet" type="text/css" href="{{asset('assets/css/toast.css')}}">
+
 		<!-- custom - css include -->
 		<link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
+
+
 
 	</head>
 
@@ -94,6 +99,12 @@
 
 		<!-- jquery ui - jquery include -->
         <script src="{{asset('assets/js/jquery-ui.js')}}"></script>
+		
+		<!-- jquery toast plugin - jquery include -->
+        <script src="{{asset('assets/js/jquery.toaster.js')}}"></script>
+		
+		<!-- Another jquery toast plugin - jquery include -->
+        <script src="{{asset('assets/js/toast.js')}}"></script>
 
 		<!-- custom - jquery include -->
 		<script src="{{asset('assets/js/custom.js')}}"></script>

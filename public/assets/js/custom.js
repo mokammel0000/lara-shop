@@ -131,11 +131,11 @@
       $('.overlay').removeClass('active');
     });
 
-  //   $('.cart_btn').on('click', function () {
-  //     $('.cart_sidebar').addClass('active');
-  //     $('.overlay').addClass('active');
-  //   });
-  // });
+    // $('.cart_btn').on('click', function () {
+    //   $('.cart_sidebar').addClass('active');
+    //   $('.overlay').addClass('active');
+    // });
+  });
 
   $(document).ready(function () {
     $('.close_btn, .overlay').on('click', function () {
@@ -1176,5 +1176,52 @@
   // google map - end
   // --------------------------------------------------
 
+  $('#cart-btn').click(function(e){
+    e.preventDefault();
+
+    $.ajax({
+      url: '/add-to-cart', 
+      method: 'GET', 
+      success: function(data){
+        //---- TO ALERT THE USER WITH AN ALERT MESSAGE
+        // alert(data);
+
+
+        //---- TO ALERT THE USER WITH A MESSEGE THAT'S BELONGS TO THE BUTTON
+        // $('#cart-btn').after(data);
+        // $('this').after(data);
+        
+
+        //---- TO ALERT THE USER WITH A TOAST MESSEGE
+        // $.toaster({ priority :'success', title :'success!', message :'Product has been added to the cart'});
+
+
+        //---- ANOTHRE TOAST MESSEGE
+        // $.toast({
+        //   title: 'success!',
+        //   content: data,
+        //   type: 'info',
+        //   delay: 3000
+        // });
+
+
+        let cartCount = $('.btn_badge').first().text();
+        // because there are two btn buttons for the cart with the same class,
+        // one for the web and another one for the responsive design.....
+        // or we can use id directly...
+        // let cartCount = $('#cartCount').text();
+
+        // console.log(cartCount);
+        
+        cartCount++;
+
+        $('.btn_badge').text(cartCount);
+
+      }, 
+      error: function(){
+      }
+    });
+
+  });
 
 })(jQuery);
