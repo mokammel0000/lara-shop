@@ -131,11 +131,11 @@
       $('.overlay').removeClass('active');
     });
 
-    $('.cart_btn').on('click', function () {
-      $('.cart_sidebar').addClass('active');
-      $('.overlay').addClass('active');
-    });
-  });
+  //   $('.cart_btn').on('click', function () {
+  //     $('.cart_sidebar').addClass('active');
+  //     $('.overlay').addClass('active');
+  //   });
+  // });
 
   $(document).ready(function () {
     $('.close_btn, .overlay').on('click', function () {

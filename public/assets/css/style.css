@@ -2044,7 +2044,8 @@ button {
   border-radius: 100%;
   background-color: #2e2e2e;
 }
-.action_btns_group button .btn_badge {
+.action_btns_group button .btn_badge,  
+.action_btns_group a .btn_badge {
   top: -5px;
   right: -8px;
   height: 25px;
@@ -3361,7 +3362,8 @@ button {
 .supermarket_header .action_btns_group > li:not(:last-child) {
   margin-right: 30px;
 }
-.supermarket_header .action_btns_group button {
+.supermarket_header .action_btns_group button,
+.supermarket_header .action_btns_group a {
   width: auto;
   height: auto;
   display: block;

@@ -75,24 +75,62 @@
                     </form>
                 </div>
 
-                <div class="col-lg-3">
+                <div class="col-lg-2">
+                    <div class="supermarket_header_btns clearfix">
+                        <ul class="action_btns_group ul_li_right clearfix">
+
+                            @if (Auth::check())
+
+                            <li class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle text-dark"  role="button" 
+                                data-toggle="dropdown" aria-expanded="false">
+                                    Welcome, {{Auth::user()->name}}
+                                </a>
+                                <div class="dropdown-menu" >
+                                    <a class="dropdown-item" href="{{url('profile')}}">
+                                        Profile
+                                    </a>
+                                    <a class="dropdown-item" href="{{url('logout')}}">
+                                        Sign out
+                                    </a>
+                                    {{-- <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Something else here</a> --}}
+                                </div>
+                            </li>
+
+                            @else
+
+                                <li style="margin-right: 0 !important">
+                                    <a href="{{url('login')}}" class="btn btn-secondary btn-sm"
+                                    style="background-color: #cc1414; color:white">
+                                        Sign In
+                                    </a>
+                                </li>
+
+                                <pre>  </pre>
+
+                                <li style="margin-right: 0 !important">
+                                    <a href="{{url('register')}}" class="btn btn-secondary btn-sm"
+                                    style="background-color: #cc1414; color:white">
+                                        New Account
+                                    </a>
+                                </li>
+
+                            
+                            @endif
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-1">
                     <div class="supermarket_header_btns clearfix">
                         <ul class="action_btns_group ul_li_right clearfix">
                             <li>
-                                <a href="{{url('register')}}" class="btn btn-secondry btn-sm">
-                                    New Account
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{url('login')}}" class="btn btn-secondry btn-sm">
-                                    Sign In
-                                </a>
-                            </li>
-                            <li>
-                                <button type="button" class="cart_btn">
+                                <a href="{{ Auth::check()? url('cart'): url('login')}}" class="cart_btn">
                                     <i class="fal fa-shopping-bag"></i>
-                                    <span class="btn_badge">2</span>
-                                </button>
+                                    <span class="btn_badge">0</span>
+                                </a>
                             </li>
                         </ul>
                     </div>

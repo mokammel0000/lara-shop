@@ -19,6 +19,7 @@ class product extends Model
         'sku'
     ];
 
+    // Apending values to Json....
     protected $appends = ['featured_photo'];
 
     protected function featuredPhoto(): Attribute
@@ -29,9 +30,15 @@ class product extends Model
 				? asset($this->photos()->first()->path)
 				: asset('uploads/Products/image-placeholder-base.png');
             }
-        
         );
     }
+    //------------------------------------
+
+
+
+
+    // Mutators & Casting,
+    // Accessors $ Mutators.
 
     protected function price(): Attribute
     {
@@ -39,6 +46,12 @@ class product extends Model
             get: fn (string $value) => "$ $value",
         );
     }
+    //-------------------------------------
+
+
+
+
+
 
     // Event, listen to any product created 
     protected static function booted()
@@ -48,7 +61,13 @@ class product extends Model
             $product->save();
         });
     }
+    //---------------------------------------
 
+
+
+
+
+    
     // Relation 
     // when u want to call category from product,
     // firstly, u should define this relation in the product model...
