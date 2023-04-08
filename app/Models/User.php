@@ -48,4 +48,12 @@ class User extends Authenticatable
         );
     }
     //------------------------------------
+
+
+    //Relation
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
+
 }

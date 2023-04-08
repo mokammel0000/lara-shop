@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Website\AuthController;
+use App\Http\Controllers\Website\CartController;
 use App\Http\Controllers\Website\CategoryController;
 use App\Http\Controllers\Website\HomePageController;
 use App\Http\Controllers\Website\ProductController;
@@ -29,6 +30,5 @@ Route::post('/login', [AuthController::class, 'postlogin']);
 
 Route::get('/logout', [AuthController::class, 'logout']);
 
-Route::get('/add-to-cart', function(){
-    return 'Product has been added to the cart';
-});
+Route::get('/cart', [CartController::class, 'index']);
+Route::post('/add-to-cart',[CartController::class, 'addToCart']);

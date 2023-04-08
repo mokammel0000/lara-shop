@@ -47,7 +47,9 @@
                             <li>
                                 <button type="button" class="cart_btn">
                                     <i class="fal fa-shopping-cart"></i>
-                                    <span class="btn_badge">0</span>
+                                    <span class="btn_badge"> 
+                                        {{$cartCount}}
+                                     </span>
                                 </button>
                             </li>
                             <li><button type="button" class="mobile_menu_btn"><i class="far fa-bars"></i></button></li>
@@ -77,21 +79,22 @@
 
                 <div class="col-lg-2">
                     <div class="supermarket_header_btns clearfix">
-                        <ul class="action_btns_group ul_li_right clearfix">
+                        <ul class="action_btns_group ul_li clearfix">
 
                             @if (Auth::check())
 
                             <li class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle text-dark"  role="button" 
                                 data-toggle="dropdown" aria-expanded="false">
-                                    Welcome, {{Auth::user()->name}}
+                                    <small> <b>Welcome,  {{Auth::user()->name}} </b>  </small>
                                 </a>
                                 <div class="dropdown-menu" >
                                     <a class="dropdown-item" href="{{url('profile')}}">
-                                        Profile
+                                        <small> <b> Profile </b> </small>
                                     </a>
+
                                     <a class="dropdown-item" href="{{url('logout')}}">
-                                        Sign out
+                                        <small> <b> Sign out </b> </small>
                                     </a>
                                     {{-- <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#">Something else here</a> --}}
@@ -129,7 +132,9 @@
                             <li>
                                 <a href="{{ Auth::check()? url('cart'): url('login')}}" class="cart_btn">
                                     <i class="fal fa-shopping-bag"></i>
-                                    <span id="cartCount" class="btn_badge">0</span>
+                                    <span id="cartCount" class="btn_badge">
+                                        {{ $cartCount }}
+                                    </span>
                                 </a>
                             </li>
                         </ul>

@@ -1176,6 +1176,11 @@
   // google map - end
   // --------------------------------------------------
 
+
+
+  // link a link(a) with ajax - start
+  // note that the link id is cart-btn...
+  // --------------------------------------------------
   $('#cart-btn').click(function(e){
     e.preventDefault();
 
@@ -1183,45 +1188,99 @@
       url: '/add-to-cart', 
       method: 'GET', 
       success: function(data){
+
         //---- TO ALERT THE USER WITH AN ALERT MESSAGE
         // alert(data);
-
 
         //---- TO ALERT THE USER WITH A MESSEGE THAT'S BELONGS TO THE BUTTON
         // $('#cart-btn').after(data);
         // $('this').after(data);
+
+        // increaseCartCount();
+        // secondToaster();
         
-
-        //---- TO ALERT THE USER WITH A TOAST MESSEGE
-        // $.toaster({ priority :'success', title :'success!', message :'Product has been added to the cart'});
-
-
-        //---- ANOTHRE TOAST MESSEGE
-        // $.toast({
-        //   title: 'success!',
-        //   content: data,
-        //   type: 'info',
-        //   delay: 3000
-        // });
-
-
-        let cartCount = $('.btn_badge').first().text();
-        // because there are two btn buttons for the cart with the same class,
-        // one for the web and another one for the responsive design.....
-        // or we can use id directly...
-        // let cartCount = $('#cartCount').text();
-
-        // console.log(cartCount);
-        
-        cartCount++;
-
-        $('.btn_badge').text(cartCount);
-
       }, 
       error: function(){
       }
     });
-
   });
 
+  // link a link(a) with ajax - end
+  // --------------------------------------------------
+
+  
+
+
+  // link a Form with ajax - start
+  // --------------------------------------------------
+  $('#add-to-cart-form').submit(function(e){
+    e.preventDefault();
+
+    $.ajax({
+          url: '/add-to-cart', 
+          method: 'POST',  //because the route is POST
+          
+          // data: new FormData(this),
+          // processData: false,
+          // CONVERT THE CURRENT ATTRIPUTES IN THE HTML FORML TO JAVASCRIPT OBJECT.
+          
+          data: $(this).serializeArray(),
+        // CONVERT THE CURRENT ATTRIPUTES IN THE HTML FORML TO JAVASCRIPT ARRAY.
+
+          success: function(data){
+            increaseCartCount();
+
+            $.toast({
+              title: 'success!',
+              content: data,
+              type: 'info',
+              delay: 3000
+          });
+          },
+          error: function(){      
+          }
+
+    })
+  });
+  // link a Form with ajax - end
+  // --------------------------------------------------
+
+
+
+  function increaseCartCount(){
+    let cartCount = parseInt($('.btn_badge').first().text());
+    // because there are two btn buttons for the cart with the same class,
+    // one for the web and another one for the responsive design.....
+    // or we can use id directly...
+    // let cartCount = $('#cartCount').text();
+
+
+    cartCount++;
+    // console.log(cartCount);
+    $('.btn_badge').text(cartCount);
+
+  }
+
+  function firstToaster(){
+    //---- TO ALERT THE USER WITH A TOAST MESSEGE
+    $.toaster({ priority :'success', title :'success!', message :data});
+
+  }
+
+  function secondToaster(){
+    //---- ANOTHRE TOAST MESSEGE
+    $.toast({
+      title: 'success!',
+      content: data,
+      type: 'info',
+      delay: 3000
+  });
+    
+}
+
 })(jQuery);
+
+  
+
+  
+

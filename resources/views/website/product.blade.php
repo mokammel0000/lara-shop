@@ -109,24 +109,39 @@ Product Details
 									</ul>
 								</div> --}}
 
-								<ul class="btns_group_1 ul_li mb_30 clearfix">
-									<li>
-										<div class="quantity_input">
-											<form action="#">
-												<span class="input_number_decrement">–</span>
-												<input class="input_number" type="text" value="1">
-												<span class="input_number_increment">+</span>
-											</form>
-										</div>
-									</li>
-									<li>
-										<a id="cart-btn" class="custom_btn bg_black text-uppercase">
-											<i class="fal fa-shopping-bag mr-2"></i> 
-											Add To Cart
-										</a>
-										{{-- this link used ajax and jquery, look at custom.js file --}}
-									</li>
-								</ul>
+								{{-- <form action="{{url('/add-to-cart')}}" method="POST">  --}}
+									{{-- traditional form, default attitude --}}
+
+								<form id="add-to-cart-form" action="{{url('/add-to-cart')}}" method="POST"> 
+									{{-- Ajax form, Ajax attitude --}}
+									@csrf
+									<input type="hidden" name="product_id" value="{{$product->id}}">
+
+									<ul class="btns_group_1 ul_li mb_30 clearfix">
+										<li>
+											<div class="quantity_input">
+												{{-- <form action="#"> --}}
+													<span class="input_number_decrement">–</span>
+													<input class="input_number" type="text" value="1" name="quantity">
+													<span class="input_number_increment">+</span>
+												{{-- </form> --}}
+											</div>
+										</li>
+										<li>
+
+											<button type="submit" class="custom_btn bg_black text-uppercase">
+												<i class="fal fa-shopping-bag mr-2"></i>
+												Add To Cart
+											</button>
+
+											{{-- <a id="cart-btn" class="custom_btn bg_black text-uppercase">
+												<i class="fal fa-shopping-bag mr-2"></i>
+												Add To Cart
+											</a> --}}
+											{{-- this link used ajax and jquery, look at custom.js file --}}
+										</li>
+									</ul>
+								</form>
 
 								{{-- <ul class="btns_group_2 ul_li clearfix">
 									<li>

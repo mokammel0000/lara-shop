@@ -31,6 +31,10 @@ return new class extends Migration
             // or u can use it directly 
             // $table->foreignId('user_id')->constrained();
             //it will create the foreign id with it's constrains
+
+            //If u don't write the foregin key line, the relationship will be created successfully, but
+            //there will cause some problems for you, so it's better to write it
+            //when you put it, you can write any constrains you want....
         });
     }
 

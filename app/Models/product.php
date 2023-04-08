@@ -43,7 +43,7 @@ class product extends Model
     protected function price(): Attribute
     {
         return Attribute::make(
-            get: fn (string $value) => "$ $value",
+            get: fn (string $value) => $value,
         );
     }
     //-------------------------------------
@@ -62,8 +62,6 @@ class product extends Model
         });
     }
     //---------------------------------------
-
-
 
 
 
@@ -87,6 +85,16 @@ class product extends Model
     {
         return $this->hasmany(Photo::class);
     }
+
+    
+    // Is there any need to call cart relation from product model?!
+    // I think NO, expect you are inted to
+    // make a report for the admin with the number of carts that has added this product
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class);
+    }
+    //---------------------------------------
 }
 
 
