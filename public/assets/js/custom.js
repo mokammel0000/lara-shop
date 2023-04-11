@@ -1178,73 +1178,75 @@
 
 
 
-  // link a link(a) with ajax - start
+
+  // Add to cart using Ajax (with a link a) - start
   // note that the link id is cart-btn...
   // --------------------------------------------------
-  $('#cart-btn').click(function(e){
-    e.preventDefault();
+  // $('#cart-btn').click(function(e){
+  //   e.preventDefault();
 
-    $.ajax({
-      url: '/add-to-cart', 
-      method: 'GET', 
-      success: function(data){
+  //   $.ajax({
+  //     url: '/add-to-cart', 
+  //     method: 'GET', 
+  //     success: function(data){
 
-        //---- TO ALERT THE USER WITH AN ALERT MESSAGE
-        // alert(data);
+  //       //---- TO ALERT THE USER WITH AN ALERT MESSAGE
+  //       // alert(data);
 
-        //---- TO ALERT THE USER WITH A MESSEGE THAT'S BELONGS TO THE BUTTON
-        // $('#cart-btn').after(data);
-        // $('this').after(data);
+  //       //---- TO ALERT THE USER WITH A MESSEGE THAT'S BELONGS TO THE BUTTON
+  //       // $('#cart-btn').after(data);
+  //       // $('this').after(data);
 
-        // increaseCartCount();
-        // secondToaster();
-        
-      }, 
-      error: function(){
-      }
-    });
-  });
+  //       //---- TO ALERT THE USER WITH A TOAST MESSEGE
+  //       $.toaster({ priority :'success', title :'success!', message :data});
 
-  // link a link(a) with ajax - end
+  //       // increaseCartCount();
+
+  //     }, 
+  //     error: function(){
+  //     }
+  //   });
+  // });
+  // Add to cart using Ajax (with a link a) - end
   // --------------------------------------------------
 
-  
 
-
-  // link a Form with ajax - start
+  // Add to cart using Ajax (with a Form) - start
   // --------------------------------------------------
   $('#add-to-cart-form').submit(function(e){
     e.preventDefault();
 
     $.ajax({
-          url: '/add-to-cart', 
-          method: 'POST',  //because the route is POST
-          
-          // data: new FormData(this),
-          // processData: false,
-          // CONVERT THE CURRENT ATTRIPUTES IN THE HTML FORML TO JAVASCRIPT OBJECT.
-          
-          data: $(this).serializeArray(),
+        url: '/add-to-cart', 
+        method: 'POST',  //because the route is POST
+        
+        // data: new FormData(this),
+        // processData: false,
+        // CONVERT THE CURRENT ATTRIPUTES IN THE HTML FORML TO JAVASCRIPT OBJECT.
+        
+        data: $(this).serializeArray(),
         // CONVERT THE CURRENT ATTRIPUTES IN THE HTML FORML TO JAVASCRIPT ARRAY.
 
-          success: function(data){
-            increaseCartCount();
+        success: function(data){
 
-            $.toast({
-              title: 'success!',
-              content: data,
-              type: 'info',
-              delay: 3000
-          });
-          },
-          error: function(){      
+          if(!data.exists){
+            increaseCartCount();
           }
 
+          //---- ANOTHRE TOAST MESSEGE
+          $.toast({
+            title: 'success!',
+            content: data.message,
+            type: 'info',
+            delay: 3000
+        });
+        },
+        error: function(){      
+        }
     })
   });
-  // link a Form with ajax - end
+  // Add to cart using Ajax (with a Form) - end
   // --------------------------------------------------
-
 
 
   function increaseCartCount(){
@@ -1261,22 +1263,113 @@
 
   }
 
-  function firstToaster(){
-    //---- TO ALERT THE USER WITH A TOAST MESSEGE
-    $.toaster({ priority :'success', title :'success!', message :data});
+
+  // Remove From Cart
+  $('.remove_btn').click(function () {
+
+    // To read data attribute that u have added in the html element, 
+    // you have 2 different ways:
+
+    // let productID = $(this).attr('data-pid');
+    let productID = $(this).data('pid');
+    // console.log(productID);
+    // return;
+    // alert(productID);
+     
+    let btn = this;
+    // console.log($(this));
+    // console.log($(btn));
+    // or u can use arrow function, this in it can see the parent's this...
+
+    let totalPrice = parseFloat($(this).parents('tr').find('.total_price').text());
+    // console.log(totalPrice);
+    // return;
+    
+    $.ajax({
+      url: '/remove-from-cart/' + productID, 
+      method: 'GET',  //because the route is GET
+      
+      success: function(data) {
+
+        decreaseCartCount();
+        calcTotals(totalPrice);
+        
+        // console.log($(this));
+        // console.log($(btn));
+
+        // $(btn).parents('tr').fadeOut(3000);
+        // $(btn).parents('tr').remove();
+        // $(btn).closest('tr').remove();
+        // $(btn).closest('tr').fadeOut(2000);
+        // $(btn).closest('tr').fadeOut(2000).remove();
+        $(btn).closest('tr').fadeOut(1000, function(){
+          $(this).remove();
+        });
+        // $(btn).closest('tr').fadeOut(2000).delay(2000).remove();   // don't work
+
+        $.toast({
+          title: 'success!',
+          content: data,
+          type: 'info',
+          delay: 3000
+      });
+
+      },
+      error: function(){      
+      },
+  })
+  });
+
+  function decreaseCartCount(){
+    let cartCount = parseInt($('.btn_badge').first().text());
+    
+    cartCount--;
+    $('.btn_badge').text(cartCount);
 
   }
 
-  function secondToaster(){
-    //---- ANOTHRE TOAST MESSEGE
-    $.toast({
-      title: 'success!',
-      content: data,
-      type: 'info',
-      delay: 3000
-  });
+
+  // Remove From Cart using ARROW FUNCTION
+  // $('.remove_btn').click(function () {
+
+  //   let productID = $(this).data('pid');
+  //   let totalPrice = parseFloat($(this).parents('tr').find('.total_price').text());
     
-}
+  //   $.ajax({
+  //     url: '/remove-from-cart/' + productID, 
+  //     method: 'GET',  
+      
+  //     success: (data) => {
+
+  //       calcTotals(totalPrice);
+
+  //       $(this).parents('tr').fadeOut(1000, function() {
+  //         $(this).remove();
+  //       });
+
+  //       $.toast({
+  //         title: 'success!',
+  //         content: data,
+  //         type: 'info',
+  //         delay: 3000
+  //     });
+
+  //     },
+  //     error: function(){      
+  //     },
+  // })
+  // });
+
+  function calcTotals(amount) {
+    let subTotal = parseFloat( $('#subtotal').text()) - amount;
+    let newVat = subTotal * 15 / 100;
+    let newTotal =  subTotal + newVat;
+
+    $('#subtotal').text(subTotal);
+    $('#vat').text(newVat);
+    $('#total').text(newTotal);
+  }
+
 
 })(jQuery);
 

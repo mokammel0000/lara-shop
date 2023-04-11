@@ -2,11 +2,15 @@
     <div class="container maxw_1460">
         <nav class="main_menu clearfix">
             <ul class="ul_li clearfix">
+
+                {{-- All Departments --}}
                 <li>
                     <button class="alldepartments_btn bg_supermarket_red text-uppercase" type="button" data-toggle="collapse" data-target="#alldepartments_dropdown" aria-expanded="false" aria-controls="alldepartments_dropdown">
                         <i class="far fa-bars"></i> All Departments
                     </button>
                 </li>
+
+                {{-- Home --}}
                 <li class="menu_item_has_child">
                     <a href="#!">Home</a>
                     <div class="mega_menu text-center">
@@ -30,6 +34,8 @@
                         </div>
                     </div>
                 </li>
+
+                {{-- Shop --}}
                 <li class="menu_item_has_child">
                     <a href="#!">Shop</a>
                     <div class="mega_menu">
@@ -179,6 +185,8 @@
                         </div>
                     </div>
                 </li>
+
+                {{-- Pages --}}
                 <li class="menu_item_has_child">
                     <a href="#!">Pages</a>
                     <ul class="submenu">
@@ -209,14 +217,18 @@
                         <li class="menu_item_has_child">
                             <a href="#!">Register</a>
                             <ul class="submenu">
-                                <li><a href="login.html">Login</a></li>
-                                <li><a href="signup.html">Sign Up</a></li>
+                                <li><a href="{{ url('/login') }}">Login</a></li>
+                                <li><a href="{{ url('/register') }}">Sign Up</a></li>
                             </ul>
                         </li>
                     </ul>
                 </li>
+
+
                 <li><a href="#!">About us</a></li>
+                
                 <li><a href="contact.html">Contact us</a></li>
+
             </ul>
         </nav>
     </div>

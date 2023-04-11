@@ -12,6 +12,8 @@ Cart
 			<section class="cart_section sec_ptb_50 clearfix">
 				<div class="container">
 
+					<form action="{{ url('/update-cart') }}" method="POST">
+						@csrf
 					<div class="cart_table mb_50">
 						<table class="table">
 							<thead class="text-uppercase">
@@ -23,6 +25,8 @@ Cart
 								</tr>
 							</thead>
 							<tbody>
+
+								@php($subTotal = 0)
 
 								@forelse ($products as $product)
 
@@ -43,7 +47,7 @@ Cart
 													{{ $product->category->name }}
 												</span>
 											</div>
-											<button type="button" class="remove_btn">
+											<button type="button" class="remove_btn" data-pid="{{ $product->id }}">
 												<i class="fal fa-times"></i>
 											</button>
 										</div>
@@ -55,25 +59,27 @@ Cart
 									</td>
 									<td>
 										<div class="quantity_input">
-											<form action="#">
-												<span class="input_number_decrement">–</span>
-												<input class="input_number" type="text" value="{{ $product->pivot->quantity }}">
-												<span class="input_number_increment">+</span>
-											</form>
+											<span class="input_number_decrement">–</span>
+											<input class="input_number" type="text" name="quantity[{{$product->id}}]"
+												value="{{ $product->pivot->quantity }}">
+											<span class="input_number_increment">+</span>
 										</div>
 									</td>
 									<td>
 										<span class="total_price">
-											{{ $product->price * $product->pivot->quantity }}
+											{{ $total = $product->price * $product->pivot->quantity }}
 										</span>
 									</td>
 								</tr>
+								@php($subTotal += $total)
 									
 								@empty
 									<tr >
 										<td colspan="100%"> 
-											<div class="alert alert-info">
-												Your cart is empty
+											<div class="alert alert-primary  ">
+													<div class="row justify-content-center">
+													Your cart is empty
+												</div>
 											</div>
 										</td>
 									</tr>
@@ -95,19 +101,34 @@ Cart
 
 							<div class="col-lg-5 col-md-12 col-sm-12 col-xs-12">
 								<div class="cart_update_btn">
-									<button type="button" class="custom_btn bg_secondary text-uppercase">Update Cart</button>
+									<button type="submit" class="custom_btn bg_secondary text-uppercase">
+										Update Cart
+									</button>
 								</div>
 							</div>
 						</div>
 					</div>
+				</form>
 
 					<div class="row justify-content-lg-end">
 						<div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
 							<div class="cart_pricing_table pt-0 text-uppercase" data-bg-color="#f2f3f5">
 								<h3 class="table_title text-center" data-bg-color="#ededed">Cart Total</h3>
 								<ul class="ul_li_block clearfix">
-									<li><span>Subtotal</span> <span>$197.99</span></li>
-									<li><span>Total</span> <span>$197.99</span></li>
+									<li>
+										<span> Subtotal </span> 
+										<span id="subtotal"> {{ $subTotal }} </span>
+									</li>
+
+									<li>
+										<span> VAT </span> 
+										<span id="vat">  {{ $vat = $subTotal * (14 / 100) }} </span>
+									</li>
+
+									<li>
+										<span> Total </span> 
+										<span id="total"> {{$total = $subTotal + $vat }} </span>
+									</li>
 								</ul>
 								<a href="shop_checkout.html" class="custom_btn bg_success">Proceed to Checkout</a>
 							</div>

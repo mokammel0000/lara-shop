@@ -32,3 +32,10 @@ Route::get('/logout', [AuthController::class, 'logout']);
 
 Route::get('/cart', [CartController::class, 'index']);
 Route::post('/add-to-cart',[CartController::class, 'addToCart']);
+Route::post('/update-cart',[CartController::class, 'update']);
+Route::get('/remove-from-cart/{prodcutID}',[CartController::class, 'removeFromCart']);
+
+
+Route::get('/error-404',function() {
+    return view('website.Error404');
+});
