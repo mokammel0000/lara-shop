@@ -9,7 +9,12 @@ class CartController extends Controller
 {
     public function index()
     {
-        $products = auth()->user()->cart->products;
+        // dd(auth()->user());                       // THIS IS THE USER MODEL
+        // dd(auth()->user()->cart);                 // THIS IS THE CART MODEL
+        // dd(auth()->user()->cart->products);       // THIS IS THE RELATION IN THE CART MODEL
+        // dd(auth()->user()->cart->products->first->pivot->quantity);       // THIS IS THE RELATION IN THE CART MODEL
+        
+        $products = auth()->user()->cart->products;  // GIVE ME THE PRODUCTS THAT'S IN THE CART OF THE AUTHED USER...                    
         return view('website.cart', compact('products'));
     }
 
@@ -49,8 +54,8 @@ class CartController extends Controller
             // so, you have to add it to the user's cart...
 
             auth()->user()
-            ->cart
-            ->products()
+            ->cart             
+            ->products()       
             ->attach(
                 $request['product_id'], 
                 ['quantity'=> $request['quantity']]

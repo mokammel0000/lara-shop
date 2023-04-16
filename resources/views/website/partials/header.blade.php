@@ -93,11 +93,21 @@
                                         <small> <b> Profile </b> </small>
                                     </a>
 
+                                    <a class="dropdown-item" href="{{url('orders')}}">
+                                        <small> <b> Orders </b> </small>
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{url('change-password')}}">
+                                        <small> <b> Change Password </b> </small>
+                                    </a>
+
+                                    <div class="dropdown-divider"></div>
+
                                     <a class="dropdown-item" href="{{url('logout')}}">
                                         <small> <b> Sign out </b> </small>
                                     </a>
-                                    {{-- <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Something else here</a> --}}
+                                    
+                                    {{--  <a class="dropdown-item" href="#">Something else here</a> --}}
                                 </div>
                             </li>
 

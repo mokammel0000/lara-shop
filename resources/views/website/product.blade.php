@@ -45,7 +45,7 @@ Product Details
 								</h2>
 
 								<span class="item_price">
-									{{$product->price}}
+									{{$product->priceWithSign}}
 								</span>
 
 								<hr>

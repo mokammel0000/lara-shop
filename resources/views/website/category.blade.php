@@ -79,7 +79,7 @@ Categories
 									<div class="item_content text-uppercase text-white">
 										<h3 class="item_title bg_black text-white mb-0">{{$product->name}}</h3>
 										<span class="item_price bg_sports_red">
-											<strong> {{$product->price}}</strong>
+											<strong> {{$product->priceWithSign}}</strong>
 											 {{-- <del> $390 </del> --}}
 										</span>
 									</div>

@@ -19,8 +19,12 @@ class product extends Model
         'sku'
     ];
 
+    
     // Apending values to Json....
-    protected $appends = ['featured_photo'];
+    // THESE ARE A NEW FEATURES THAT WE ADD IT TO THE MODEL, 
+    // THESE ARN'T A FIELDS IN THE TABLE IN DB....
+
+    protected $appends = ['featured_photo', 'price_with_sign'];
 
     protected function featuredPhoto(): Attribute
     {
@@ -32,6 +36,15 @@ class product extends Model
             }
         );
     }
+
+    protected function priceWithSign(): Attribute
+    {
+        return new Attribute(
+            get: function(){
+                return "$ $this->price";
+            }
+        );
+    }
     //------------------------------------
 
 
@@ -39,21 +52,23 @@ class product extends Model
 
     // Mutators & Casting,
     // Accessors $ Mutators.
+    // THESE ARE FIELDS IN THE DATABASE, BUT WE ATTEMPT TO CUTOMIZATIO THE RETURNING VALUE
 
     protected function price(): Attribute
     {
         return Attribute::make(
             get: fn (string $value) => $value,
         );
+        // return Attribute::make(
+        //     get: fn (string $value) => "$ $value",
+        // );
     }
     //-------------------------------------
 
 
 
-
-
-
     // Event, listen to any product created 
+    // WHEN WE CREATE ANY PRODUCT, DO THIS EVENT AUTOMATICALLY...
     protected static function booted()
     {
         static::created(function ($product) {
@@ -65,7 +80,6 @@ class product extends Model
 
 
 
-    
     // Relation 
     // when u want to call category from product,
     // firstly, u should define this relation in the product model...
@@ -75,8 +89,7 @@ class product extends Model
     {
         return $this->belongsTo(Category::class);
     }
-    
-    // Relation 
+
     // when u want to call photos from product,
     // firstly, u should define this relation in the product model...
     // note that the product is the parent of the photos model so,
@@ -90,10 +103,10 @@ class product extends Model
     // Is there any need to call cart relation from product model?!
     // I think NO, expect you are inted to
     // make a report for the admin with the number of carts that has added this product
-    public function carts()
-    {
-        return $this->belongsToMany(Cart::class);
-    }
+    // public function carts()
+    // {
+    //     return $this->belongsToMany(Cart::class);
+    // }
     //---------------------------------------
 }
 

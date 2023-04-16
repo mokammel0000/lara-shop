@@ -48,12 +48,20 @@ class User extends Authenticatable
         );
     }
     //------------------------------------
-
-
+    
+    
     //Relation
     public function cart()
     {
         return $this->hasOne(Cart::class);
     }
-
+    // the relation that return the cart that belongs to this user
+    
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
+    // the relation that return the ordres that belongs to this user
+    //------------------------------------
+    
 }
