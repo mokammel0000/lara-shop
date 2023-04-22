@@ -15,8 +15,20 @@ class ProductController extends Controller
     // in INDEX , SHOW and EDIT we use RELATEIONS
     public function index()
     {
+        
+        // $products = Product::all();  //all the resulsts will be showen in the same page
+        // $products = Product::get();
+
+        // $products = Product::where('photo', '!=', 'null')->get();   
+        // $products = Product::whereNotNull('photo')->get();
+        // $products = Product::whereNull('photo')->get();
+
         // $products = Product::paginate(10);
+        // $products = Product::with('category')->get();
+        // $products = Product::with(['category'])->get();
         $products = Product::with(['category'])->paginate(10);
+                                    // TO USE THIS RELATION, FIRSTLY U SHOULD DEFINE 
+                                    // CATEGORY RELATION IN THE PRODUCT MODEL 
         return view('dashboard.products.index', compact('products'));
     }
 

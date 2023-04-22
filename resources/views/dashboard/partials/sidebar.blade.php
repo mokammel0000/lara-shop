@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/admin') }}">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-shopping-cart"></i>
         </div>
@@ -34,6 +34,15 @@
         <a class="nav-link" href="{{url('/admin/products')}}">
             <i class="fas fa-fw fa-archive"></i>
             <span>Products</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <li class="nav-item active">
+        <a class="nav-link" href="{{url('/admin/slides')}}">
+            <i class="fas fa-fw fa-archive"></i>
+            <span>Slider</span></a>
     </li>
 
     <!-- Nav Item - Pages Collapse Menu -->

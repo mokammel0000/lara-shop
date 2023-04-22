@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
     <title> Admin - @yield('title')</title>
+    <link rel="shortcut icon" href="{{asset('assets/images/icons/admin.png')}}">
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('dashboard/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -19,6 +20,10 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('dashboard/css/sb-admin-2.min.css')}}" rel="stylesheet">
+
+
+    <!-- Custom styles for Jquery Rich Text Editor-->
+    <link href="{{asset('dashboard/css/richtext.min.css')}}" rel="stylesheet">
 
 </head>
 
@@ -42,10 +47,10 @@
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
-                <div class="container-fluid"> 
-                    
+                <div class="container-fluid">
+
                     @yield('content')
-                
+
                 </div>
                 <!-- /.container-fluid -->
 
@@ -103,6 +108,27 @@
     <!-- Page level custom scripts -->
     <script src="{{asset('dashboard/js/demo/chart-area-demo.js')}}"></script>
     <script src="{{asset('dashboard/js/demo/chart-pie-demo.js')}}"></script>
+
+    <!-- Jquery Rich Text Editor custom scripts -->
+    <script src="{{asset('dashboard/js/jquery.richtext.min.js')}}"></script>
+    <script>
+        $(function() {
+
+            // IF U ARE USING CLASS
+            if($('.editor').length){     // if there is class editor in the page you are loading
+
+                $('.editor').richText(); // call this function to the class editor,
+                                         // this function opening the rich text editor...
+            }
+
+            // IF U ARE USING ID
+            // if($('#editor').length){     // if there is class editor in the page you are loading
+
+            //     $('#editor').richText(); // call this function to the class editor,
+            //                             // this function opening the rich text editor...
+            // }
+        });
+    </script>
 
 </body>
 

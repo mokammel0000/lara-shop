@@ -52,8 +52,6 @@ class CategoryController extends Controller
             'photo'=>'required| mimes:jpg,bmp,png',
         ]);
 
-        // dd($request->all());
-
         $filePath  = ' ';
         if($request->file('photo')) 
         {
