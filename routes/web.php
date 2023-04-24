@@ -20,6 +20,8 @@ Route::get('/category/{id}',[CategoryController::class, 'show']);
 
 Route::get('/product/{id}', [ProductController::class, 'show']);
 
+Route::get('/search-results', [ProductController::class, 'search']);
+
 Route::get('/register', [AuthController::class, 'register']);
 Route::post('/register', [AuthController::class, 'postRegister']);
 

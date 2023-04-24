@@ -48,15 +48,15 @@ Categories
 									<div class="item_image" data-bg-color="#f5f5f5">
 
 										
-										{{-- {{dd($product->photos)}}   			    	 return an array with all photos --}}
+										{{-- {{dd($product->photos)}}   		    	 return an array with all photos --}}
 
 										{{-- this is the relations u have wrote in the MODEL --}}
 										  							
-										{{-- {{dd($product->category())}}   				 return an object that type is belongsTo relation --}}
+										{{-- {{dd($product->category())}}   		     return an object that type is belongsTo relation --}}
 										  							  
-										{{-- {{dd($product->photos())}}  				 return an object that type is hasmany relation --}}
+										{{-- {{dd($product->photos())}}  			     return an object that type is hasmany relation --}}
 																	
-										{{-- {{dd($product->photos()->first()->path)}}    return a spesific record from the relation  --}}
+										{{-- {{dd($product->photos()->first()->path)}}   return a spesific record from the relation  --}}
 										
 
 										<img src="{{ $product->featured_photo}}" alt="image_not_found"/>
