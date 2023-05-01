@@ -1,5 +1,3 @@
-
-
 @extends('website.layout')
 
 @section('title')
