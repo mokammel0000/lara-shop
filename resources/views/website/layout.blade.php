@@ -34,6 +34,9 @@
 
 		<!-- jquery Toast Plugin - css include -->
 		<link rel="stylesheet" type="text/css" href="{{asset('assets/css/toast.css')}}">
+		
+		<!-- jquery Star_Rating Plugin - css include -->
+		<link rel="stylesheet" type="text/css" href="{{asset('assets/css/star-rating-svg.css')}}">
 
 		<!-- custom - css include -->
 		<link rel="stylesheet" type="text/css" href="{{asset('assets/css/style.css')}}">
@@ -105,9 +108,16 @@
 		
 		<!-- Another jquery toast plugin - jquery include -->
         <script src="{{asset('assets/js/toast.js')}}"></script>
+		
+		<!-- jquery star rating plugin - jquery include -->
+		<script src="{{asset('assets/js/jquery.star-rating-svg.js')}}"></script>
 
 		<!-- custom - jquery include -->
 		<script src="{{asset('assets/js/custom.js')}}"></script>
+
+		@yield('js');
+		{{-- We will call here Jquery Code, that we want to execute
+		we must execute Jquery code After calling Jquery plugin --}}
 
 	</body>
 </html>

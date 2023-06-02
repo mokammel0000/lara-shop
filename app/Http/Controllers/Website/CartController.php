@@ -113,6 +113,7 @@ class CartController extends Controller
         foreach($request->quantity as $pid => $q){
             if($q == 0){
                 auth()->user()->cart->products()->detach($pid);
+                // delete the record if user put 0 in the quantity field.
                 continue;
             }
             $newQuantities[$pid] = ['quantity' => $q];

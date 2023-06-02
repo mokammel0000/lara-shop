@@ -62,6 +62,14 @@ class User extends Authenticatable
         return $this->hasMany(Order::class);
     }
     // the relation that return the ordres that belongs to this user
+
+    public function product()
+    {
+        return $this->belongsToMany(Product::class);        
+        return $this->belongsToMany(Product::class)->withPivot(['rating', 'comment']);  
+    }
+    // the relation that return product object (Many to Many Relationship),
+    // u can return the pivot attributes (comment and rating) that's located in product_user table.
     //------------------------------------
     
 }

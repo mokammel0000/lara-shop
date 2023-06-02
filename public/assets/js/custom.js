@@ -319,6 +319,7 @@
       }
     });
 }
+
   neoncart_quantity();
   // quantity - end
   // --------------------------------------------------
@@ -333,6 +334,7 @@
     var my = event.pageY;
     console.log(mx + '-' + my);
   })
+  
   $('.zoom-image img').hover(function () {
     var img = $(this).attr('src');
     $(this).after("<div class='hover-image' style='background-image: url(" + img + "); background-size: 1200px;'></div>");
@@ -1247,8 +1249,7 @@
   });
   // Add to cart using Ajax (with a Form) - end
   // --------------------------------------------------
-
-
+  
   function increaseCartCount(){
     let cartCount = parseInt($('.btn_badge').first().text());
     // because there are two btn buttons for the cart with the same class,
@@ -1262,6 +1263,7 @@
     $('.btn_badge').text(cartCount);
 
   }
+
 
 
   // Remove From Cart
@@ -1327,9 +1329,8 @@
     $('.btn_badge').text(cartCount);
 
   }
-
-
-  // Remove From Cart using ARROW FUNCTION
+  // Remove From Cart using ARROW FUNCTION - Start
+  //----------------------------------------------
   // $('.remove_btn').click(function () {
 
   //   let productID = $(this).data('pid');
@@ -1359,6 +1360,8 @@
   //     },
   // })
   // });
+  // Remove From Cart using ARROW FUNCTION - End
+  //----------------------------------------------
 
   function calcTotals(amount) {
     let subTotal = parseFloat( $('#subtotal').text()) - amount;
@@ -1369,6 +1372,27 @@
     $('#vat').text(newVat);
     $('#total').text(newTotal);
   }
+
+
+
+  // Add A Rate using Jquery Plugin (with a Form) - start
+  // --------------------------------------------------
+  $(".my-rating").starRating({ 
+
+    // You can customize the Plugin Attributes here, 
+    //or u can put a value to them in the JS file, but it will be a general value so it will apply all times u call the pluging
+    starSize: 45,  // This line Displays the Stars on the page
+
+    callback: function(currentRating, $el){
+        // make a server call here
+        // this block of code will be executed when we choose a rating
+
+        $("#rating").val(currentRating);
+        // assign the currentRating value to the hidden input that's id is "rating".
+    }
+  });
+  // Add A Rate using Jquery Plugin (with a Form) - End
+  // --------------------------------------------------
 
 
 })(jQuery);

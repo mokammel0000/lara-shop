@@ -9,7 +9,15 @@ Product Details
 			================================================== -->
 			<section class="details_section shop_details sec_ptb_140 clearfix">
 				<div class="container">
+					@if (session('success'))
+						<div class="alert alert-success text-center">
+							{{session('success')}}
+						</div>	
+					@endif
+					
 					<div class="row mb_100 justify-content-lg-between justify-content-md-center">
+
+						{{-- photos Section (column= 5) --}}
 						<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
 							<div class="shop_details_image">
 								<div class="tab-content zoom-gallery">
@@ -37,6 +45,7 @@ Product Details
 							</div>
 						</div>
 
+						{{-- product Information Section (column= 7) --}}
 						<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
 							<div class="shop_details_content">
 
@@ -63,15 +72,21 @@ Product Details
 
 									<div class="col-lg-7">
 										<div class="rating_review_wrap d-flex align-items-center clearfix">
-											<ul class="rating_star ul_li">
+											<div class="product-rating"></div>
+											<span>
+												{{$product->user_count}} Review(s)
+											</span>
+											<button type="button" class="add_review_btn">
+												Add Your Review
+											</button>
+											{{-- <ul class="rating_star ul_li">
 												<li><i class="fas fa-star"></i></li>
 												<li><i class="fas fa-star"></i></li>
 												<li><i class="fas fa-star"></i></li>
 												<li><i class="fas fa-star"></i></li>
 												<li><i class="fas fa-star"></i></li>
-											</ul>
-											<span>4 Review(s)</span>
-											<button type="button" class="add_review_btn">Add Your Review</button>
+											</ul> --}}
+											
 										</div>
 									</div>
 
@@ -109,11 +124,12 @@ Product Details
 									</ul>
 								</div> --}}
 
+								{{-- traditional form, default attitude --}}
 								{{-- <form action="{{url('/add-to-cart')}}" method="POST">  --}}
-									{{-- traditional form, default attitude --}}
+								{{-- </form> --}}
 
+								{{-- Ajax form, Ajax attitude --}}
 								<form id="add-to-cart-form" action="{{url('/add-to-cart')}}" method="POST"> 
-									{{-- Ajax form, Ajax attitude --}}
 									@csrf
 									<input type="hidden" name="product_id" value="{{$product->id}}">
 
@@ -187,12 +203,16 @@ Product Details
 					</div>
 
 					<div class="details_description_tab mb_100">
+						
 						<ul class="nav ul_li text-uppercase" role="tablist">
 							<li>
 								<a class="active" data-toggle="tab" href="#description_tab">Product Description</a>
 							</li>
 							<li>
-								<a data-toggle="tab" href="#reviews_tab">Reviews</a>
+								<a data-toggle="tab" href="#reviews_tab">Reviews </a>
+							</li>
+							<li>
+								<a data-toggle="tab" href="#add_your_review"> Add your Review</a>
 							</li>
 							{{-- <li>
 								<a data-toggle="tab" href="#information_tab">Additional Information</a>
@@ -208,32 +228,66 @@ Product Details
 							</div>
 
 							<div id="reviews_tab" class="tab-pane fade">
-								<form action="#">
-									<div class="row">
-										<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-											<div class="form_item">
-												<input type="text" name="name" placeholder="Your Name">
-											</div>
-										</div>
+								
 
-										<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-											<div class="form_item">
-												<input type="email" name="email" placeholder="Your Email">
-											</div>
-										</div>
+									<div class="card">	
+											<div class="card-header" style="color: black; background-color:aliceblue ">
+												<b>Others Saied: </b>
+											</div>				
+											
+											@foreach ($product->user as $user)
+												{{-- @if (!empty($user->pivot->comment)) --}}
+													{{-- 
+														To AVOID Showing empty user, because of that,
+														user can add rating without adding a comment
 
-										<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-											<div class="form_item">
-												<input type="text" name="subject" placeholder="Subject">
-											</div>
-										</div>
+														It's better to do that in the controller,
+														than checking condition after fetching all data in RAM
+													--}}
+													<div class="card-body">
+														<blockquote class="blockquote mb-0">
+																<small style="color: black" >
+																	-{{ $user->name }}:
+																</small>
+																<small >
+																	{{ $user->pivot->comment  }}
+																</small>
+														</blockquote>
+													</div>
+												{{-- @endif --}}
+										@endforeach
 									</div>
+								
+							</div>
 
-									<div class="form_item">
-										<textarea name="message" placeholder="Your Message"></textarea>
+							<div id="add_your_review" class="tab-pane fade">
+								@if (Auth::check())
+										<form action="{{ url('product/review') }}" method="POST">
+											@csrf
+
+											<input type="hidden" name="product_id" value="{{$product->id}}">
+											
+											<div class="form_item">
+												<div class="my-rating"></div>
+												<input type="hidden" name="rating" id="rating">
+												{{-- when we choose a rate, it's store in the hidding field using jquery --}}
+											</div>
+											
+											<div class="form_item">
+												<textarea name="comment" placeholder="Your Comment"></textarea>
+											</div>
+										
+											<button type="submit" class="custom_btn bg_default_red text-uppercase">
+												Submit Review
+											</button>
+										</form>
+								@else
+									<div class="alert alert-warning ">
+										please, Login to your account.
+										<a class="btn btn-primary ml-5" href="{{url('/login')}}">Login</a>
 									</div>
-									<button type="submit" class="custom_btn bg_default_red text-uppercase">Submit Review</button>
-								</form>
+								@endif
+								
 							</div>
 
 							{{-- <div id="information_tab" class="tab-pane fade">
@@ -302,4 +356,16 @@ Product Details
 			</section>
 			<!-- details_section - end
 			================================================== -->
+@endsection
+
+@section('js')
+<script>
+	$(function(){
+		$(".product-rating").starRating({ 
+		starSize: 20,     // This line Displays the Stars on the page
+		readOnly: true,
+		initialRating: {{$productrating}},
+		});
+	});
+</script>
 @endsection
