@@ -21,7 +21,7 @@
                                         <li>
                                             <a href="{{url('category/'.$category->id)}}">
                                                 <span class="item_image">
-                                                    <img src="{{asset($category->photo)}}" alt="image_not_found" style="width:50%">
+                                                    <img src="{{asset($category->photo)}}" alt="image_not_found">
                                                 </span>
                                                 <span class="item_title">{{$category->name}}</span>
                                             </a>

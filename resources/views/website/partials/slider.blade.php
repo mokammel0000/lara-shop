@@ -14,7 +14,9 @@
                                     {{-- <a href="category/{{$category->id}}"> --}}
                                     <a href="{{url('category/'.$category->id)}}">
                                         <span class="icon">
-                                            <i class="fas fa-{{$category->icon}}"></i>
+                                            <i class="fas fa-{{$category->icon}}">
+                                                <img src="{{url($category->icon)}}" alt="">
+                                            </i>
                                         </span>
                                         <strong>{{$category->name}}</strong>
                                     </a>

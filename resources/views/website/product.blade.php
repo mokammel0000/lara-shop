@@ -27,7 +27,7 @@ Product Details
 											<a class="popup_image zoom-image" 
 												data-image="{{$photo->path}}" 
 												href="{{$photo->path}}">
-												<img src="{{$photo->path}}" alt="image_not_found">
+												<img src="{{asset($photo->path)}}" alt="image_not_found">
 											</a>
 										</div>
 									@endforeach
@@ -37,7 +37,7 @@ Product Details
 									@foreach ($product->photos as $photo)
 										<li>
 											<a class="{{$loop->first?'active':''}}" data-toggle="tab" href="#tab_{{$loop->index+1}}">
-												<img src="{{$photo->path}}" alt="image_not_found">
+												<img src="{{asset($photo->path)}}" alt="image_not_found">
 											</a>
 										</li>
 									@endforeach
@@ -221,12 +221,15 @@ Product Details
 
 						<!-- Tab panes -->
 						<div class="tab-content">
+
+							{{-- description_tab --}}
 							<div id="description_tab" class="tab-pane active">
 								<div class="row mb_50">
 									{{$product->description}}
 								</div>
 							</div>
 
+							{{-- reviews_tab --}}
 							<div id="reviews_tab" class="tab-pane fade">
 								
 
@@ -260,6 +263,7 @@ Product Details
 								
 							</div>
 
+							{{-- add_your_review --}}
 							<div id="add_your_review" class="tab-pane fade">
 								@if (Auth::check())
 										<form action="{{ url('product/review') }}" method="POST">

@@ -55,7 +55,9 @@ Categories
                                 {{-- <img src="{{url($category->photo) }}" alt=""> --}}
                             </td>
                             <td>
-                                <i class="fas fa-{{ $category->icon}} "> </i>
+                                <i class="fas fa-{{ $category->icon}} ">
+                                    <img src="{{url($category->icon)}}" alt="">
+                                </i>
                             </td>
                             <td>
                                 <form action="{{ url('admin/categories/'. $category->id) }}" method="POST">

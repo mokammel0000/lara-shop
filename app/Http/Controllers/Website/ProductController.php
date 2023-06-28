@@ -131,7 +131,7 @@ class ProductController extends Controller
 
     public function review()
     {
-        auth()->user()->ratings()->attach(
+        auth()->user()->product()->attach(
                                                             // user id will be send automatically
             ['product_id'=>request()->product_id],          // product id
             request()->only('rating', 'comment')            // array that includes other pivots

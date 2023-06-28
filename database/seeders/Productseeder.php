@@ -13,6 +13,6 @@ class Productseeder extends Seeder
     {
         // product::truncate();
         
-        product::factory()->count(99)->create();
+        product::factory()->count(98)->create();
     }
 }

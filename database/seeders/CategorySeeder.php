@@ -13,7 +13,7 @@ class CategorySeeder extends Seeder
         // Category::truncate();
 
         // Category::factory(5)->create();
-        Category::factory()->count(9)->create();
+        Category::factory()->count(7)->create();
 
     }
 }
