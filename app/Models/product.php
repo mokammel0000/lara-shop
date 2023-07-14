@@ -42,7 +42,7 @@ class product extends Model
     {
         return new Attribute(
             get: function(){
-                return "$ $this->price";
+                return "$this->price $";
             }
         );
     }

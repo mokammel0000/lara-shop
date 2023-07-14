@@ -38,7 +38,7 @@
                         </div>
                         <div class="item_content">
                             <h3 class="item_title">
-                                <a href="#!">
+                                <a href="{{url('product/'.$product->id)}}">
                                     {{$product->name}}
                                 </a>
                             </h3>
@@ -49,7 +49,7 @@
                             </ul> 
                             <span class="item_price">
                                 <strong>
-                                    {{$product->price}}
+                                    {{$product->priceWithSign}}
                                 </strong> 
                                 {{-- <del>
                                     $30.00

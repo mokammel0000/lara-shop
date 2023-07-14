@@ -8,10 +8,21 @@ use App\Models\ProductReview;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
     public function show($id){
+        
+        $ratings_for_the_post = [];
+        $reviews = ProductReview::where('user_id', auth()->id())->where('product_id', $id)->get();
+        foreach ($reviews as $product_review) {
+            if($product_review->rating != 0){
+                array_push($ratings_for_the_post, $product_review->rating);   
+                }
+            }
+        $is_rated_previously = !empty($ratings_for_the_post);
+
 
         // $product = product::with([
         //     'category',
@@ -77,7 +88,7 @@ class ProductController extends Controller
         // $product->increment('views');
 
 
-        return view('website.product', compact(['product', 'productrating']));
+        return view('website.product', compact(['product', 'productrating', 'is_rated_previously']));
     }
 
     public function search(){
