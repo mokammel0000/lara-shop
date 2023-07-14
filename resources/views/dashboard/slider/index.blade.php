@@ -8,12 +8,18 @@
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Categories</h1>
+    <h1 class="h3 mb-0 text-gray-800">Slides</h1>
     <a href="{{url('admin/slides/create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
         <i class="fas fa-download fa-sm text-white-50"> </i>
         New Slide
     </a>
 </div>
+
+@if (session('success'))
+    <div class="alert alert-success text-center" role="alert">
+        {{session('success')}}
+    </div>
+@endif
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
@@ -64,7 +70,7 @@
                             </td>
 
                             <td>
-                                <form action="{{ url('admin/categories/'. $slide->id) }}" method="POST">
+                                <form action="{{ url('admin/slides/'. $slide->id) }}" method="POST">
 
                                     <a href="{{ url("admin/slides/$slide->id") }}" class="btn btn-sm btn-info"> View </a>
                                     
@@ -99,7 +105,7 @@
                         <td colspan="4">
                             <div class="alert alert-warning" role="alert">
                                 There is no Slides Yet, U can Add a new Slide from here.....
-                                <a href="/admin/categories/create">
+                                <a href="/admin/slides/create">
                                     New Slide
                                 </a>
                             </div>

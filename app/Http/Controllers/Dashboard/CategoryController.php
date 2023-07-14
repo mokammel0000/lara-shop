@@ -78,17 +78,16 @@ class CategoryController extends Controller
         //===========================================================
         //              GO TO A VIEW
         // return view('dashboard.categories.create');
+        // return view('dashboard.slider.index', compact('slides'));
         
         //===========================================================
         //            REDIRECT TO A ROUTE
         // return redirect('/admin/categories/create');
-        
+        // return redirect('/admin/slides')->with('success', 'The New Slide has been saved succesfully');
+
         //===========================================================
-        //        REDIRECT TO THE LAST ROUTE
+        //        REDIRECT TO [THE LAST] ROUTE
         //return back();
-        
-        //===========================================================
-        // REDIRECT TO THE LAST ROUTE WITH A MESSAGE IN A SESSION
         return back()->with('success', 'The New Category has been saved succesfully');
     }
 

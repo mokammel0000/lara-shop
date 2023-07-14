@@ -37,27 +37,56 @@ class SliderController extends Controller
 
         $newSlide = Slide::create($inputs);
 
-        return back()->with('success', 'The New Slide has been saved succesfully');
+        // return back()->with('success', 'The New Slide has been saved succesfully');
+        return redirect('/admin/slides')->with('success', 'The New Slide has been saved succesfully');
     }
 
     public function show(string $id)
     {
-        //
+        $slide = Slide::find($id);
+        return view('dashboard.slider.show', compact('slide'));
     }
 
-    public function edit(string $id)
+    public function edit(Slide $slide)
     {
-        //
+        return view('dashboard.slider.edit', compact('slide'));
     }
 
-    public function update(Request $request, string $id)
+    public function update(Request $request, Slide $slide) 
     {
-        //
+        $request->validate([
+            'content'=>'required',
+            'product_id'=>'required'
+        ]);
+
+
+        if($request->hasFile('photo')){
+            $fileName =  now()->timestamp . '_' . $request->file('photo')->getClientOriginalName();
+            $filePath =  'uploads/' . $fileName;
+
+            $request->file('photo')->move('uploads', $fileName);
+        }
+
+        $inputs = $request->all();
+        if($request->hasFile('photo')){
+            $inputs['photo'] = $filePath;
+
+        }
+        $slide->update($inputs);
+
+        return back()->with('uploaded', 'The Slide has been Uploaded succesfully');
+    
+    
     }
 
     public function destroy(string $id)
     {
-        //
+        $slider = Slide::find($id);
+        Slide::destroy($id);
+
+        //return back()->with('deleted', 'The Slider has been deleted succesfully');       
+        return redirect('/admin/slides')->with('deleted', 'The Slider has been deleted succesfully');
+    
     }
 
 

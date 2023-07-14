@@ -55,9 +55,9 @@ New Slide
                     @endforeach
                 </select>
                 
-                @error('category_id')
+                {{-- @error('category_id')
                     <small class="text-danger"> {{$message}} </small>
-                @enderror
+                @enderror --}}
             </div>
 
             <div class="form-group">

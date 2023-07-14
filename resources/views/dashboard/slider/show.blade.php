@@ -1,17 +1,17 @@
 @extends('dashboard.layout')
 
 @section('title')
-Show Category
+Show Slider
 @endsection()
 
 
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Categories</h1>
-    <a href="{{url('admin/categories')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+    <h1 class="h3 mb-0 text-gray-800">Slide</h1>
+    <a href="{{url('admin/slides')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
         <i class="fas fa-caret-left"> </i>
-        Back To Categories
+        Back To Slides
     </a>
 </div>
 
@@ -21,7 +21,7 @@ Show Category
 
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">
-            Show Category
+            Show Slide
         </h6>
     </div>
 
@@ -29,21 +29,19 @@ Show Category
       <table class="table table-bordered">
         <tbody>
           <tr>
-            <th >Name</th>
-            <td>{{$category->name}}</td>
+            <th >Content</th>
+            <td>{!!$slide->content!!}</td>
           </tr>
 
           <tr>
-            <th >Icon</th>
-            <td>
-                <i class="fas fa-{{$category->icon}}"></i>
-            </td>
+            <th >Status</th>
+            <td> {{$slide->active}} </td>
           </tr>
 
           <tr>
             <th >Photo</th>
             <td>
-                <img src="{{asset($category->photo)}}" style="width: 400px;">
+                <img src="{{asset($slide->photo)}}" style="width: 400px;">
             </td>
           </tr>
           
