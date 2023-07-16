@@ -277,7 +277,7 @@ Product Details
 									<input type="hidden" name="product_id" value="{{$product->id}}">
 									
 									<div class="form_item">
-										<div class="my-rating"></div>
+										{{-- <div class="my-rating"></div> --}}
 										<i>you have been rated this product before</i>
 									</div>
 									

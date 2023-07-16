@@ -17,7 +17,7 @@ class ProductController extends Controller
         $ratings_for_the_post = [];
         $reviews = ProductReview::where('user_id', auth()->id())->where('product_id', $id)->get();
         foreach ($reviews as $product_review) {
-            if($product_review->rating != 0){
+            if(isset($product_review->rating)){
                 array_push($ratings_for_the_post, $product_review->rating);   
                 }
             }
@@ -86,7 +86,6 @@ class ProductController extends Controller
         // $product->save();
         $product->update(['views' => $product->views + 1]);
         // $product->increment('views');
-
 
         return view('website.product', compact(['product', 'productrating', 'is_rated_previously']));
     }

@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('product_user', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
-            $table->float('rating')->nullable()->default(0);
+            $table->float('rating')->nullable();
             $table->longText('comment')->nullable();
 
             $table->foreign('product_id')->references('id')->on('products');
