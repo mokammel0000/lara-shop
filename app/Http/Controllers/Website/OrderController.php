@@ -28,6 +28,7 @@ class OrderController extends Controller
         $prodcuts = [];
 
         foreach($cart as $product){
+            $product->increment('sales');
             $productTotal = $product->price * $product->pivot->quantity;
             $subTotal += $productTotal;
 
