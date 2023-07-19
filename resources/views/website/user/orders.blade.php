@@ -152,11 +152,10 @@ Orders
 									</div>	
 								</td>
 
-								{{-- Form to cancel the order if it was in some status --}}
+								{{--Canciling the order if it was in some status --}}
 								<td>
 									
-									@if ($order->status == App\Models\Order::STATUS_NEW 
-											|| $order->status == App\Models\Order::STATUS_IN_PROGRESS )
+									@if ($order->status == App\Models\Order::STATUS_NEW  || $order->status == App\Models\Order::STATUS_IN_PROGRESS )
 										<form action="{{ url('/cancel-order') }}" method="POST">
 											@csrf
 											<input type="hidden" name="order_id" value="{{ $order->id }}">

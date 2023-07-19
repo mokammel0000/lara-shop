@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\OrderController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\SliderController;
+use App\Http\Controllers\Dashboard\UserController;
 
 Route::get('/', function () {
     return view('dashboard.index');
@@ -30,9 +32,7 @@ Route::get('/login', function () {
 */
 Route::resource('/categories', CategoryController::class);
 
-
 Route::resource('/products', ProductController::class);
-
 
 Route::resource('/slides', SliderController::class);
     // MY OWN WAY
@@ -40,3 +40,8 @@ Route::resource('/slides', SliderController::class);
 //Route::get('/slides/activate/{id}',[ SliderController::class, 'activate']);
     // ENG.MOHAMED ISMAIEL'S WAY
 Route::get('/toggle-slide-active/{id}',[ SliderController::class, 'toggleActive']);
+
+Route::resource('/customers', UserController::class);
+
+Route::resource('/orders', OrderController::class);
+Route::get('/orders/change-status', [OrderController::class, 'changeStatus']);

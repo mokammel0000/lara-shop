@@ -41,9 +41,27 @@
 
     <li class="nav-item active">
         <a class="nav-link" href="{{url('/admin/slides')}}">
-            <i class="fas fa-fw fa-archive"></i>
+            <i class="fas fa-fw fa-grip-horizontal"></i>
             <span>Slider</span></a>
     </li>
+
+     <!-- Divider -->
+     <hr class="sidebar-divider">
+
+     <li class="nav-item active">
+         <a class="nav-link" href="{{url('/admin/customers')}}">
+             <i class="fas fa-fw fa-users"></i>
+             <span>Customers</span></a>
+     </li>
+
+     <!-- Divider -->
+     <hr class="sidebar-divider">
+
+     <li class="nav-item active">
+         <a class="nav-link" href="{{url('/admin/orders')}}">
+             <i class="fas fa-fw fa-truck"></i>
+             <span>Orders</span></a>
+     </li>
 
     <!-- Nav Item - Pages Collapse Menu -->
     {{-- <li class="nav-item">
