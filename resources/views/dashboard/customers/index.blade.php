@@ -123,7 +123,7 @@ Customers
                                                             <td> {{$order->status_text}} </td>
                                                             <td> {{$order->payment_method_text}} </td>
                                                             <td class="text-center"> {{$order->payment_status}} </td>
-                                                            <td> {{$order->address ?: auth()->user()->address}} </td>
+                                                            <td> {{$order->address ?: $customer->address}} </td>
                                                             <td> {{$order->notes}} </td>
                                                             <td> {{$order->total}} </td>
                                                         </tr>

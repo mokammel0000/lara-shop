@@ -35,6 +35,12 @@ Edit Product
                 {{session('uploaded')}}
             </div>
             @endif
+
+            @if (session('deleted'))
+            <div class="alert alert-danger" role="alert">
+                {{session('deleted')}}
+            </div>
+            @endif
             
             <div class="form-group">
                 <label>Product Name</label>
@@ -108,9 +114,22 @@ Edit Product
                         <small class="text-danger"> {{$message}} </small>
                     @enderror
                 </div>
-                @foreach ($product->photos as $photo)
-                    <img src="{{asset($photo->path)}}" class="img-thumbnail w-22 " alt="{{$photo->name}}" title="{{$photo->name}}">
-                @endforeach
+
+                @if ($product->photos->isNotEmpty())
+                    <div class="card">
+                        <div class="card-body row">
+                            @foreach ($product->photos as $photo)
+                            <div class="img-box col">
+                                <img src="{{asset($photo->path)}}" class="img-thumbnail" alt="{{$photo->name}}" title="{{$photo->name}}">
+                                <a class="del-img" href="{{ url('admin/products/del-img/'.$photo->id) }}">
+                                    <img src="{{ asset('dashboard/img/remove.png') }}" style="width: 25px; height: 25px"/>
+                                </a>
+                            </div>
+                        @endforeach
+                        </div>
+                    </div>
+                @endif
+                
             </div>
 
         </div>

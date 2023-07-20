@@ -101,7 +101,7 @@ class ProductController extends Controller
     
     public function edit(Product $product)
     {
-        $product->load(['category', 'photos']);
+        $product->load(['photos']);
         $categories = Category::get();
         return view('dashboard.products.edit', compact('product', 'categories'));
     }
@@ -119,7 +119,6 @@ class ProductController extends Controller
 
         // dd($request->all());
 
-        
         $product->update($request->all());
 
         if($request->hasFile('photos')){
@@ -147,5 +146,12 @@ class ProductController extends Controller
         Product::destroy($id);
 
         return back()->with('deleted', 'The Product '.$product->name.'has been deleted succesfully');        
+    }
+
+    public function delImage($id)
+    {
+        Photo::destroy($id);
+        // Photo::delete($id);
+        return back()->with('deleted', 'The Photo has been deleted succesfully');    
     }
 }

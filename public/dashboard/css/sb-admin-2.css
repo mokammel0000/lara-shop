@@ -11280,3 +11280,9 @@ footer.sticky-footer .copyright {
 body.sidebar-toggled footer.sticky-footer {
   width: 100%;
 }
+
+.del-img{
+  position: absolute;
+  top: 0;
+  right: 0;
+}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Website;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\FlashDeal;
 use App\Models\product;
 use App\Models\Slide;
 use Illuminate\Http\Request;
@@ -22,6 +23,8 @@ class HomePageController extends Controller
         $computers_products = product::with('photos')->where('category_id',1)->orderBy('sales', 'desc')->limit(6)->get();
         
         $laptops_products = product::with('photos')->where('category_id',2)->orderBy('sales', 'desc')->limit(6)->get();
+
+        // $flash_deals = FlashDeal::
 
         return view('website.home', compact('categories', 'slides', 'products', 'computers_products', 'laptops_products'));
     }

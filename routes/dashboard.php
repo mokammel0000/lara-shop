@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\FlashDealsController;
 use App\Http\Controllers\Dashboard\OrderController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\SliderController;
@@ -33,6 +34,10 @@ Route::get('/login', function () {
 Route::resource('/categories', CategoryController::class);
 
 Route::resource('/products', ProductController::class);
+Route::get('/products/del-img/{id}', [ProductController::class, 'delImage']);
+
+Route::resource('flash-deals', FlashDealsController::class);
+Route::get('/toggle-deal-active/{id}', [FlashDealsController::class, 'toggleActive']);
 
 Route::resource('/slides', SliderController::class);
     // MY OWN WAY

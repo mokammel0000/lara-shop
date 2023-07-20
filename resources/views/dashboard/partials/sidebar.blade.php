@@ -18,6 +18,26 @@
             <span>Dashboard</span></a>
     </li>
 
+    
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <li class="nav-item active">
+        <a class="nav-link" href="{{url('/admin/slides')}}">
+            <i class="fas fa-fw fa-grip-horizontal"></i>
+            <span>Slider</span></a>
+    </li>
+
+    
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <li class="nav-item active">
+        <a class="nav-link" href="{{url('/admin/flash-deals/')}}">
+            <i class="fas fa-money-bill"></i>
+            <span>Flash Deals</span></a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider">
 
@@ -34,15 +54,6 @@
         <a class="nav-link" href="{{url('/admin/products')}}">
             <i class="fas fa-fw fa-archive"></i>
             <span>Products</span></a>
-    </li>
-
-    <!-- Divider -->
-    <hr class="sidebar-divider">
-
-    <li class="nav-item active">
-        <a class="nav-link" href="{{url('/admin/slides')}}">
-            <i class="fas fa-fw fa-grip-horizontal"></i>
-            <span>Slider</span></a>
     </li>
 
      <!-- Divider -->

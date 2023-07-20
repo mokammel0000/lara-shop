@@ -149,6 +149,6 @@ class CategoryController extends Controller
         Category::destroy($id);
 
         return back()->with('deleted', 'The '.$category->name.' Category has been deleted sucssesfully....');
-        return redirect()->back()->withErrors($validator)->withInput();     
+        // return redirect()->back()->withErrors($validator)->withInput();     
     }
 }
