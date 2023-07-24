@@ -10,16 +10,24 @@ return new class extends Migration
     {
         Schema::create('flash_deals', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
-            $table->unsignedtinyInteger('deal_percent')->nullable();
-            $table->integer('duaration')->nullable();
-            $table->boolean('active')->nullable()->default(true);
-            $table->string('photo_path')->nullble();
+            $table->string('title');
+            
+            $table->integer('discount_percentage');
+            $table->decimal('original_price');
+            $table->decimal('discounted_price');
 
-            $table->unsignedBigInteger('product_id')->nullable();
+            $table->integer('duration');
+            $table->dateTime('start_at');
+            $table->dateTime('end_at');
+
+            
+            $table->boolean('active')->default(true);
+            $table->string('photo_path');
+            
+            $table->unsignedBigInteger('product_id');
             $table->timestamps();
 
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

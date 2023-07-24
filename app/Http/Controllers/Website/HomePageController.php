@@ -24,8 +24,15 @@ class HomePageController extends Controller
         
         $laptops_products = product::with('photos')->where('category_id',2)->orderBy('sales', 'desc')->limit(6)->get();
 
-        // $flash_deals = FlashDeal::
+        $flash_deals = FlashDeal::with('product')->where('active', '1')->get();
 
-        return view('website.home', compact('categories', 'slides', 'products', 'computers_products', 'laptops_products'));
+        return view('website.home', compact(
+            'categories',
+            'slides',
+            'products',
+            'computers_products',
+            'laptops_products',
+            'flash_deals'
+        ));
     }
 }

@@ -1,7 +1,7 @@
 @extends('dashboard.layout')
 
 @section('title')
-Create Flash Deal
+Edit Flash Deal
 @endsection()
 
 
@@ -16,13 +16,14 @@ Create Flash Deal
 </div>
 
 <!-- DataTales Example -->
-<form action="{{url('admin/flash-deals/')}}" method="POST">
+<form action="{{url('admin/flash-deals/'.$flash_deal->id)}}" method="POST">
     @csrf
+    @method('PUT')
     <div class="card shadow mb-4">
 
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">
-                Create New Flash Deal
+                Edit Existing Flash Deal
             </h6>
         </div>
 
@@ -37,7 +38,8 @@ Create Flash Deal
             {{-- Title --}}
             <div class="form-group">
                 <label>Flash Deal Title</label>
-                <input type="text" name="title"class="form-control @error('title') is-invalid @enderror">
+                <input type="text" name="title" value="{{ $flash_deal->title }}" 
+                    class="form-control @error('title') is-invalid @enderror">
                 
                 @error('title')
                     <small class="text-danger"> {{$message}} </small>
@@ -48,9 +50,12 @@ Create Flash Deal
             <div class="form-group">
                 <label>Product</label>
                 <select class="custom-select @error('product_id') is-invalid @enderror" name="product_id" >
-                    <option selected value="">Select A Product</option>
+                    <option selected value="{{ $flash_deal->product_id }}"> {{ $flash_deal->product->name }} </option>
                     @foreach ($products as $product)
-                        <option value="{{$product->id}}">{{$product->name}}</option>
+                        @if ($product->id == $flash_deal->product_id)
+                            @continue;
+                        @endif
+                        <option value="{{ $product->id }}">{{ $product->name }}</option>
                     @endforeach
                 </select>
                 
@@ -63,7 +68,8 @@ Create Flash Deal
             <div class="form-group">
                 <label>Discount Percentage </label>
                 <div class="input-group mb-2 mr-sm-2">
-                    <input type="text" name="discount_percentage"class="form-control @error('discount_percentage') is-invalid @enderror">
+                    <input type="text" name="discount_percentage" value="{{ $flash_deal->discount_percentage }}"
+                        class="form-control @error('discount_percentage') is-invalid @enderror">
                     <div class="input-group-prepend">
                         <div class="input-group-text">%</div>
                     </div>
@@ -77,7 +83,8 @@ Create Flash Deal
             <div class="form-group">
                 <label>Duration</label>
                 <div class="input-group mb-2 mr-sm-2">
-                    <input type="text" name="duration"class="form-control @error('duration') is-invalid @enderror">
+                    <input type="text" name="duration" value="{{ $flash_deal->duration }}"
+                        class="form-control @error('duration') is-invalid @enderror">
                     <div class="input-group-prepend">
                         <div class="input-group-text">hrs</div>
                     </div>
@@ -90,7 +97,8 @@ Create Flash Deal
             {{-- Start Time --}}
             <div class="form-group">
                 <label>Start Time</label>
-                <input class="form-control" type="datetime-local" name="start_at" id="date" value="{{old('start_at')}}">
+                <input class="form-control" type="datetime-local" 
+                    name="start_at" id="date" value="{{ $flash_deal->start_at }}">
                 
                 @error('start_at')
                     <small class="text-danger"> {{$message}} </small>

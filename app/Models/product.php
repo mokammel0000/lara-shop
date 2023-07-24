@@ -138,6 +138,11 @@ class product extends Model
         // u can to return specific records from the pivot table, 
         // also u can return records from the pivot table in an ordered way, 
         // also u can aliasing the pivot table and put the name that u want.
+
+    public function flashDeals()
+    {
+        return $this->hasmany(FlashDeal::class);
+    }
     //--------------------------------------------------------------------------------------
 }
 

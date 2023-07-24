@@ -22,155 +22,33 @@
 
         <div class="supermarket_deals_carousel position-relative clearfix">
             <div class="slideshow5_slider row clearfix" data-slick='{"dots": false}'>
-                <div class="item col">
-                    <div class="supermarket_deals_item text-center clearfix">
-                        <div class="offer_text">Flat -30%</div>
-                        <a href="#!" class="item_image">
-                            <img src="assets/images/shop/supermarket/img_01.png" alt="image_not_found">
-                        </a>
-                        <div class="item_content">
-                            <h3 class="item_title">
-                                <a href="#!"> Baby Shoes </a>
-                            </h3>
-                        </div>
-                        <span class="item_instock">21 Products</span>
-                    </div>
-                </div>
 
-                <div class="item col">
-                    <div class="supermarket_deals_item text-center clearfix">
-                        <div class="offer_text">Flat -30%</div>
-                        <a href="#!" class="item_image">
-                            <img src="assets/images/shop/supermarket/img_02.png" alt="image_not_found">
-                        </a>
-                        <div class="item_content">
-                            <h3 class="item_title">
-                                <a href="#!"> Baby Shoes </a>
-                            </h3>
+                @forelse ($flash_deals as $deal)
+                    <div class="item col">
+                        <div class="supermarket_deals_item text-center clearfix">
+                            <div class="offer_text">Flat - {{ $deal->discount_percentage }}%</div>
+                            <a href="{{ url('product/'. $deal->product_id) }}" class="item_image">
+                                <img src="{{ asset($deal->photo_path) }}" alt="image_not_found">
+                            </a>
+                            <div class="item_content">
+                                <h3 class="item_title">
+                                    <a href="{{ url('product/'. $deal->product_id) }}">
+                                        {{$deal->product->name}}
+                                    </a>
+                                </h3>
+                            </div>
+                            <span class="item_instock">
+                                <s> {{$deal->original_price}} </s>
+                                <b>{{$deal->discounted_price}}</b>
+                            </span>
                         </div>
-                        <span class="item_instock">21 Products</span>
                     </div>
-                </div>
-
-                <div class="item col">
-                    <div class="supermarket_deals_item text-center clearfix">
-                        <div class="offer_text">Flat -30%</div>
-                        <a href="#!" class="item_image">
-                            <img src="assets/images/shop/supermarket/img_03.png" alt="image_not_found">
-                        </a>
-                        <div class="item_content">
-                            <h3 class="item_title">
-                                <a href="#!"> Baby Shoes </a>
-                            </h3>
-                        </div>
-                        <span class="item_instock">21 Products</span>
+                @empty
+                    <div class="alert alert-warning text-center" role="alert">
+                        There is no Deals nowadayas, be ready...
                     </div>
-                </div>
-
-                <div class="item col">
-                    <div class="supermarket_deals_item text-center clearfix">
-                        <div class="offer_text">Flat -30%</div>
-                        <a href="#!" class="item_image">
-                            <img src="assets/images/shop/supermarket/img_04.png" alt="image_not_found">
-                        </a>
-                        <div class="item_content">
-                            <h3 class="item_title">
-                                <a href="#!"> Baby Shoes </a>
-                            </h3>
-                        </div>
-                        <span class="item_instock">21 Products</span>
-                    </div>
-                </div>
-
-                <div class="item col">
-                    <div class="supermarket_deals_item text-center clearfix">
-                        <div class="offer_text">Flat -30%</div>
-                        <a href="#!" class="item_image">
-                            <img src="assets/images/shop/supermarket/img_01.png" alt="image_not_found">
-                        </a>
-                        <div class="item_content">
-                            <h3 class="item_title">
-                                <a href="#!"> Baby Shoes </a>
-                            </h3>
-                        </div>
-                        <span class="item_instock">21 Products</span>
-                    </div>
-                </div>
-
-                <div class="item col">
-                    <div class="supermarket_deals_item text-center clearfix">
-                        <div class="offer_text">Flat -30%</div>
-                        <a href="#!" class="item_image">
-                            <img src="assets/images/shop/supermarket/img_02.png" alt="image_not_found">
-                        </a>
-                        <div class="item_content">
-                            <h3 class="item_title">
-                                <a href="#!"> Baby Shoes </a>
-                            </h3>
-                        </div>
-                        <span class="item_instock">21 Products</span>
-                    </div>
-                </div>
-
-                <div class="item col">
-                    <div class="supermarket_deals_item text-center clearfix">
-                        <div class="offer_text">Flat -30%</div>
-                        <a href="#!" class="item_image">
-                            <img src="assets/images/shop/supermarket/img_03.png" alt="image_not_found">
-                        </a>
-                        <div class="item_content">
-                            <h3 class="item_title">
-                                <a href="#!"> Baby Shoes </a>
-                            </h3>
-                        </div>
-                        <span class="item_instock">21 Products</span>
-                    </div>
-                </div>
-
-                <div class="item col">
-                    <div class="supermarket_deals_item text-center clearfix">
-                        <div class="offer_text">Flat -30%</div>
-                        <a href="#!" class="item_image">
-                            <img src="assets/images/shop/supermarket/img_04.png" alt="image_not_found">
-                        </a>
-                        <div class="item_content">
-                            <h3 class="item_title">
-                                <a href="#!"> Baby Shoes </a>
-                            </h3>
-                        </div>
-                        <span class="item_instock">21 Products</span>
-                    </div>
-                </div>
-
-                <div class="item col">
-                    <div class="supermarket_deals_item text-center clearfix">
-                        <div class="offer_text">Flat -30%</div>
-                        <a href="#!" class="item_image">
-                            <img src="assets/images/shop/supermarket/img_01.png" alt="image_not_found">
-                        </a>
-                        <div class="item_content">
-                            <h3 class="item_title">
-                                <a href="#!"> Baby Shoes </a>
-                            </h3>
-                        </div>
-                        <span class="item_instock">21 Products</span>
-                    </div>
-                </div>
-
-                <div class="item col">
-                    <div class="supermarket_deals_item text-center clearfix">
-                        <div class="offer_text">Flat -30%</div>
-                        <a href="#!" class="item_image">
-                            <img src="assets/images/shop/supermarket/img_02.png" alt="image_not_found">
-                        </a>
-                        <div class="item_content">
-                            <h3 class="item_title">
-                                <a href="#!"> Baby Shoes </a>
-                            </h3>
-                        </div>
-                        <span class="item_instock">21 Products</span>
-                    </div>
-                </div>
+                @endforelse
+                
             </div>
         </div>
 
