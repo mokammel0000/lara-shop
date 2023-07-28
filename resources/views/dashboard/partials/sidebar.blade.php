@@ -56,23 +56,32 @@
             <span>Products</span></a>
     </li>
 
-     <!-- Divider -->
-     <hr class="sidebar-divider">
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
-     <li class="nav-item active">
-         <a class="nav-link" href="{{url('/admin/customers')}}">
-             <i class="fas fa-fw fa-users"></i>
-             <span>Customers</span></a>
-     </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{{url('/admin/customers')}}">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Customers</span></a>
+    </li>
 
-     <!-- Divider -->
-     <hr class="sidebar-divider">
+    <!-- Divider -->
+    <hr class="sidebar-divider">
 
-     <li class="nav-item active">
-         <a class="nav-link" href="{{url('/admin/orders')}}">
-             <i class="fas fa-fw fa-truck"></i>
-             <span>Orders</span></a>
-     </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="{{url('/admin/orders')}}">
+            <i class="fas fa-fw fa-truck"></i>
+            <span>Orders</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <li class="nav-item active">
+        <a class="nav-link" href="{{url('/admin/coupons')}}">
+            <i class="fas fa-fw fa-truck"></i>
+            <span>Coupons</span></a>
+    </li>
 
     <!-- Nav Item - Pages Collapse Menu -->
     {{-- <li class="nav-item">

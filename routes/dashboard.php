@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\CategoryController;
+use App\Http\Controllers\Dashboard\CouponController;
 use App\Http\Controllers\Dashboard\FlashDealsController;
 use App\Http\Controllers\Dashboard\OrderController;
 use App\Http\Controllers\Dashboard\ProductController;
@@ -40,13 +41,16 @@ Route::resource('flash-deals', FlashDealsController::class);
 Route::get('/toggle-deal-active/{id}', [FlashDealsController::class, 'toggleActive']);
 
 Route::resource('/slides', SliderController::class);
+Route::get('/toggle-slide-active/{id}',[ SliderController::class, 'toggleActive']);
     // MY OWN WAY
 //Route::get('/slides/deactivate/{id}', [SliderController::class, 'deactivate']);
 //Route::get('/slides/activate/{id}',[ SliderController::class, 'activate']);
     // ENG.MOHAMED ISMAIEL'S WAY
-Route::get('/toggle-slide-active/{id}',[ SliderController::class, 'toggleActive']);
 
 Route::resource('/customers', UserController::class);
 
 Route::resource('/orders', OrderController::class);
 Route::get('/orders/change-status', [OrderController::class, 'changeStatus']);
+
+Route::resource('/coupons', CouponController::class);
+Route::get('/toggle-coupon-active/{id}', [CouponController::class, 'toggleActive']);

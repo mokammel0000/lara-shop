@@ -14,7 +14,7 @@ class CartController extends Controller
         // dd(auth()->user()->cart->products);       // THIS IS THE RELATION IN THE CART MODEL
         // dd(auth()->user()->cart->products->first->pivot->quantity);       // THIS IS THE RELATION IN THE CART MODEL
         
-        $products = auth()->user()->cart->products;  // GIVE ME THE PRODUCTS THAT'S IN THE CART OF THE AUTHED USER...                    
+        $products = auth()->user()->cart->products;  // GIVE ME THE PRODUCTS THAT'S IN THE CART OF THE AUTHED USER...     z               
         return view('website.cart', compact('products'));
     }
 

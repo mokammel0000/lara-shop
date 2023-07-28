@@ -32,6 +32,7 @@ class Order extends Model
         'subtotal',
         'vat',
         'total',
+        'coupon_id'
     ];
 
     

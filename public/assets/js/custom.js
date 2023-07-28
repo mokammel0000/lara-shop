@@ -1184,35 +1184,35 @@
   // Add to cart using Ajax (with a link a) - start
   // note that the link id is cart-btn...
   // --------------------------------------------------
-  // $('#cart-btn').click(function(e){
-  //   e.preventDefault();
+  /*$('#cart-btn').click(function(e){
+    e.preventDefault();
 
-  //   $.ajax({
-  //     url: '/add-to-cart', 
-  //     method: 'GET', 
-  //     success: function(data){
+    $.ajax({
+      url: '/add-to-cart', 
+      method: 'GET', 
+      success: function(data){
 
-  //       //---- TO ALERT THE USER WITH AN ALERT MESSAGE
-  //       // alert(data);
+        //---- TO ALERT THE USER WITH AN ALERT MESSAGE
+        // alert(data);
 
-  //       //---- TO ALERT THE USER WITH A MESSEGE THAT'S BELONGS TO THE BUTTON
-  //       // $('#cart-btn').after(data);
-  //       // $('this').after(data);
+        //---- TO ALERT THE USER WITH A MESSEGE THAT'S BELONGS TO THE BUTTON
+        // $('#cart-btn').after(data);
+        // $('this').after(data);
 
-  //       //---- TO ALERT THE USER WITH A TOAST MESSEGE
-  //       $.toaster({ priority :'success', title :'success!', message :data});
+        //---- TO ALERT THE USER WITH A TOAST MESSEGE
+        $.toaster({ priority :'success', title :'success!', message :data});
 
-  //       // increaseCartCount();
+        // increaseCartCount();
 
-  //     }, 
-  //     error: function(){
-  //     }
-  //   });
-  // });
+      }, 
+      error: function(){
+      }
+    });
+  });*/
   // Add to cart using Ajax (with a link a) - end
   // --------------------------------------------------
 
-
+  
   // Add to cart using Ajax (with a Form) - start
   // --------------------------------------------------
   $('#add-to-cart-form').submit(function(e){
@@ -1247,9 +1247,7 @@
         }
     })
   });
-  // Add to cart using Ajax (with a Form) - end
-  // --------------------------------------------------
-  
+
   function increaseCartCount(){
     let cartCount = parseInt($('.btn_badge').first().text());
     // because there are two btn buttons for the cart with the same class,
@@ -1263,10 +1261,15 @@
     $('.btn_badge').text(cartCount);
 
   }
+  // Add to cart using Ajax (with a Form) - end
+  // --------------------------------------------------
+  
 
 
 
-  // Remove From Cart
+
+  // Remove From Cart - Start
+  //----------------------------------------------
   $('.remove_btn').click(function () {
 
     // To read data attribute that u have added in the html element, 
@@ -1329,39 +1332,6 @@
     $('.btn_badge').text(cartCount);
 
   }
-  // Remove From Cart using ARROW FUNCTION - Start
-  //----------------------------------------------
-  // $('.remove_btn').click(function () {
-
-  //   let productID = $(this).data('pid');
-  //   let totalPrice = parseFloat($(this).parents('tr').find('.total_price').text());
-    
-  //   $.ajax({
-  //     url: '/remove-from-cart/' + productID, 
-  //     method: 'GET',  
-      
-  //     success: (data) => {
-
-  //       calcTotals(totalPrice);
-
-  //       $(this).parents('tr').fadeOut(1000, function() {
-  //         $(this).remove();
-  //       });
-
-  //       $.toast({
-  //         title: 'success!',
-  //         content: data,
-  //         type: 'info',
-  //         delay: 3000
-  //     });
-
-  //     },
-  //     error: function(){      
-  //     },
-  // })
-  // });
-  // Remove From Cart using ARROW FUNCTION - End
-  //----------------------------------------------
 
   function calcTotals(amount) {
     let subTotal = parseFloat( $('#subtotal').text()) - amount;
@@ -1372,6 +1342,42 @@
     $('#vat').text(newVat);
     $('#total').text(newTotal);
   }
+  // Remove From Cart - End
+  //----------------------------------------------
+
+  // Remove From Cart using ARROW FUNCTION - Start
+  //----------------------------------------------
+  /* $('.remove_btn').click(function () {
+
+    let productID = $(this).data('pid');
+    let totalPrice = parseFloat($(this).parents('tr').find('.total_price').text());
+    
+    $.ajax({
+      url: '/remove-from-cart/' + productID, 
+      method: 'GET',  
+      
+      success: (data) => {
+
+        calcTotals(totalPrice);
+
+        $(this).parents('tr').fadeOut(1000, function() {
+          $(this).remove();
+        });
+
+        $.toast({
+          title: 'success!',
+          content: data,
+          type: 'info',
+          delay: 3000
+      });
+
+      },
+      error: function(){      
+      },
+  })
+  });*/
+  // Remove From Cart using ARROW FUNCTION - End
+  //----------------------------------------------
 
 
 

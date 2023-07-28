@@ -14,24 +14,24 @@ CheckOut
 					<form action="{{ url('/create-order') }}" method="POST">
 						@csrf
 
-						<div class="billing_form mb_50">
-							<h3 class="form_title mb_30">Billing details</h3>
-								<div class="form_wrap">
-									<div class="form_item">
-										<span class="input_title">Address</span>
-										<textarea  name="address" placeholder="House number and street name"></textarea>
-									</div>
-									<hr>
-									<div class="form_item mb-0">
-										<span class="input_title">Order notes</span>
-										<textarea name="notes" placeholder="Note about your order, eg. special notes fordelivery."></textarea>
-									</div>
-								</div>
-						</div>
-
 						<div class="billing_form">
-							<h3 class="form_title mb_30">Payment Method</h3>
 							<div class="form_wrap">
+								<div class="form_item">
+									<span class="input_title">Address</span>
+									<textarea  name="address" placeholder="House number and street name"></textarea>
+									@error('address')
+										<small class="text-danger">
+											{{-- {{$message}} --}}
+											either add a specific address to this order, or add a default address in your profile
+										</small>
+									@enderror
+								</div>
+								<hr>
+								<div class="form_item mb-0">
+									<span class="input_title">Order notes</span>
+									<textarea name="notes" placeholder="Note about your order, eg. special notes fordelivery."></textarea>
+								</div>
+								<hr>
 								<div class="billing_payment_mathod">
 									<ul class="ul_li_block clearfix">
 										<li>
