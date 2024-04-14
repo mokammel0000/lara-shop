@@ -1,0 +1,29 @@
+-Move Validations to the form request...
+
+
+-Best Sellers: 
+    -adimn control the categories that can be showen in the page.
+    -show the right rating with each product.
+
+
+-Orders(at admin): 
+    -Filtering between 2 dates, 
+    -Regecting an order by the admin.
+
+
+-Slider - Edit: 
+    -remove an image, 
+    -Rich Text Box.
+
+
+-Flash Deals: 
+    -adding/ removing a photo during editing an exicting flash deal.
+    -showing old values in edit and delete.
+    -the price of the product changed in the user's cart to checkout with the newer price.
+
+
+-Login at admin
+
+
+-cart.blade: 
+    calculate the prices in the controller, send it to the cart blade directly

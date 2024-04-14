@@ -40,10 +40,7 @@ class CartController extends Controller
             $oldQuantity = $product->pivot->quantity;
             $newQuantity = $oldQuantity + $request['quantity'];
             
-            auth()->user()
-            ->cart
-            ->products()
-            ->updateExistingPivot(
+            auth()->user()->cart->products()->updateExistingPivot(
                 $request['product_id'], 
                 ['quantity'=> $newQuantity]
             );
@@ -53,10 +50,7 @@ class CartController extends Controller
             // If the $product = Null, then the prodcut isn't exist at user's cart, 
             // so, you have to add it to the user's cart...
 
-            auth()->user()
-            ->cart             
-            ->products()       
-            ->attach(
+            auth()->user()->cart->products()->attach(
                 $request['product_id'], 
                 ['quantity'=> $request['quantity']]
             );
