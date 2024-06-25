@@ -12,15 +12,16 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    public function show($id){
-        
+    public function show($id)
+    {
+
         $ratings_for_the_post = [];
         $reviews = ProductReview::where('user_id', auth()->id())->where('product_id', $id)->get();
         foreach ($reviews as $product_review) {
-            if(isset($product_review->rating)){
-                array_push($ratings_for_the_post, $product_review->rating);   
-                }
+            if(isset($product_review->rating)) {
+                array_push($ratings_for_the_post, $product_review->rating);
             }
+        }
         $is_rated_previously = !empty($ratings_for_the_post);
 
 
@@ -38,14 +39,14 @@ class ProductController extends Controller
         $product = product::with(['category','photos'])
             ->with(['user' => function (Builder $query) {
                 $query->where('comment', '!=', 'Null');
-                }])
+            }])
             ->withCount(['user' => function (Builder $query) {
                 $query->where('rating', '!=', 'Null');
-                }])
-            ->find($id);        
+            }])
+            ->find($id);
 
-        // $product here doesn't include all the records on product_user table, 
-        // it's only include the records which comment attribute is not null, 
+        // $product here doesn't include all the records on product_user table,
+        // it's only include the records which comment attribute is not null,
         // so, we can't calculate the product rate with this value
         // we must create a new varible that have all product records which have a rating value
 
@@ -57,11 +58,11 @@ class ProductController extends Controller
 
 
 
-        // To calculate Product Average Rate: 
-        // -u can do it usign Elqouent ORM (make a model for the Pivot table) and return it's attributes, 
-        // -u can do it usign Query Builder, 
+        // To calculate Product Average Rate:
+        // -u can do it usign Elqouent ORM (make a model for the Pivot table) and return it's attributes,
+        // -u can do it usign Query Builder,
         // -u can calculate it manually (get the sum of all ratings and count them, then devide sum/count to calculate the average)
-        
+
         // Using Query Builder
         // $productrating = DB::table('product_user')
         //                     ->selectRaw('AVG(rating) as average')
@@ -73,7 +74,7 @@ class ProductController extends Controller
 
         // $productrating = ProductReview::withAvg('rating');
         // $productrating =round( ProductReview::where('product_id', $id)->average('rating'),  1);
-        $productrating =round( ProductReview::where('product_id', $id)->avg('rating'),  1);
+        $productrating = round(ProductReview::where('product_id', $id)->avg('rating'), 1);
 
 
 
@@ -90,7 +91,8 @@ class ProductController extends Controller
         return view('website.product', compact(['product', 'productrating', 'is_rated_previously']));
     }
 
-    public function search(){
+    public function search()
+    {
 
         /* YOU HAVE 3 CASES IN SEARCHIN:
         FIRST CASE: USER SEARCH USING KEYWORD
@@ -100,19 +102,19 @@ class ProductController extends Controller
         $keyword = request()->keyword;
         $category_id = request()->category_id;
 
-            // THIS IS A TIPYCALL SEARCH, IT'S NOT EFFECTIVE....
+        // THIS IS A TIPYCALL SEARCH, IT'S NOT EFFECTIVE....
         // $products = product::where('name', '=', $keyword)
         //                     ->orWhere('description', '=', $keyword)
         //                     ->get();
 
-            // THIS IS ALSO A TIPYCALL SEARCH, IT'S NOT EFFECTIVE.... YOU SHOULD ADD PLACEHOLDERS
+        // THIS IS ALSO A TIPYCALL SEARCH, IT'S NOT EFFECTIVE.... YOU SHOULD ADD PLACEHOLDERS
         // $products = product::where('name', 'LIKE', $keyword)
         //                     ->orWhere('description', 'LIKE', $keyword)
         //                     ->get();
 
-            // PLACEHOLDERS:
-            //                _ ----> one character
-            //                % ----> one or more characters
+        // PLACEHOLDERS:
+        //                _ ----> one character
+        //                % ----> one or more characters
 
         // $products = product::where('name', 'LIKE', '_'.$keyword.'___') // one char before it, and three chars after it
         //                     ->orWhere('description', 'LIKE', '_'.$keyword.'_')
@@ -121,8 +123,8 @@ class ProductController extends Controller
         // $products = Product::query()->dd();
 
         $products = product::query(); // equal SELECT * FROM PRODUCT
-        if($keyword){
-            $prodcuts = $products->where(function($q) use($keyword){
+        if($keyword) {
+            $prodcuts = $products->where(function ($q) use ($keyword) {
                 // THIS IS A COMPOUND WHERE, ONE WHERE CONTAINS MULTIPLE CASES
                 return $q->where('name', 'LIKE', "%$keyword%")
                             ->orWhere('description', 'LIKE', "%$keyword%")
@@ -130,7 +132,7 @@ class ProductController extends Controller
                             ->orWhere('price', '=', "$keyword");
             });
         }
-        if($category_id){
+        if($category_id) {
             $products = $products->where('category_id', $category_id);
         }
         $products = $products->get();
@@ -142,8 +144,8 @@ class ProductController extends Controller
     public function review()
     {
         auth()->user()->product()->attach(
-                                                            // user id will be send automatically
-            ['product_id'=>request()->product_id],          // product id
+            // user id will be send automatically
+            ['product_id' => request()->product_id],          // product id
             request()->only('rating', 'comment')            // array that includes other pivots
             // ['rating'=> request()->rating,
             // 'comment'=> request()->comment]

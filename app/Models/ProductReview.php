@@ -15,5 +15,5 @@ class ProductReview extends Model
     // -if Model and table have the same name(like Product and products), u don't need to do this step-
     protected $table = 'product_user';
 
-    
+
 }

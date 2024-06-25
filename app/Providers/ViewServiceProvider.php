@@ -7,11 +7,8 @@ use App\View\Composers\WebsiteHeaderComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
-
-
 class ViewServiceProvider extends ServiceProvider
 {
-
     public function register(): void
     {
         //
@@ -20,9 +17,7 @@ class ViewServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
-        View::composer(['website.partials.header'] , WebsiteHeaderComposer::class);
-        View::composer(['website.partials.popular_products'] , PopularProductsComposer::class);
+        View::composer(['website.partials.header'], WebsiteHeaderComposer::class);
+        View::composer(['website.partials.popular_products'], PopularProductsComposer::class);
     }
 }
-
-

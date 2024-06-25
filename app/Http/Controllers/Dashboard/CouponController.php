@@ -9,7 +9,6 @@ use Illuminate\Validation\Rule;
 
 class CouponController extends Controller
 {
-
     public function index()
     {
         $coupons = Coupon::paginate(10);
@@ -27,10 +26,10 @@ class CouponController extends Controller
     {
         // dd(request()->all());
         request()->validate([
-            'code' => 'required|unique:coupons,code', 
-            'type' => 'required', 
-            'discount' => 'required', 
-            'redeems' => 'required', 
+            'code' => 'required|unique:coupons,code',
+            'type' => 'required',
+            'discount' => 'required',
+            'redeems' => 'required',
         ]);
 
         Coupon::create(request()->all());
@@ -57,10 +56,10 @@ class CouponController extends Controller
             'code' => [
                 'required',
                 Rule::unique('coupons')->ignore($id),
-            ], 
-            'type' => 'required', 
-            'discount' => 'required', 
-            'redeems' => 'required', 
+            ],
+            'type' => 'required',
+            'discount' => 'required',
+            'redeems' => 'required',
         ]);
 
         $coupon = Coupon::find($id);

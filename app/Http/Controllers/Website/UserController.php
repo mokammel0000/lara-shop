@@ -15,7 +15,7 @@ class UserController extends Controller
         $user = auth()->user();
         return view('website.user.profile', compact('user'));
     }
-    
+
     public function postProfile()
     {
         request()->validate([
@@ -23,14 +23,14 @@ class UserController extends Controller
             'email' => [
                 'required',
                 // 'unique:users',
-                Rule::unique('users')->ignore(auth()->id()),        
+                Rule::unique('users')->ignore(auth()->id()),
             ],
             'phone' => 'numeric',
         ]);
 
         $user = auth()->user()->update(request()->all());
 
-        if($user){
+        if($user) {
             return back()->with('success', 'profile has been updated succesfully');
         }
         return back()->with('error', 'Error happened, please try again');
@@ -43,25 +43,25 @@ class UserController extends Controller
     {
         return view('website.user.change_password');
     }
-    
+
     public function postchangePassword()
     {
         request()->validate([
-            'old_password' => 'required', 
-            'password' => 'required|confirmed', 
+            'old_password' => 'required',
+            'password' => 'required|confirmed',
             // 'password_confirmation' => 'required',  // DON'T NEED TO WRITE IT
         ]);
-        
+
         $user = auth()->user()->update(request()->all());
 
-        if($user){
+        if($user) {
             return back()->with('success', 'Password has been updated succesfully');
         }
         return back()->with('error', 'Error happened, please try again');
     }
     //----------------------------
 
-    
+
     // Order Controllers
     public function getOrders()
     {
@@ -70,7 +70,7 @@ class UserController extends Controller
         $orders->load('products');
 
         return view('website.user.orders', compact('orders'));
-    
+
     }
 
     public function cancelOrder()
@@ -80,9 +80,9 @@ class UserController extends Controller
             'status' => 5,
         ];
 
-        $order = Order::find( request()->order_id );
+        $order = Order::find(request()->order_id);
         $order->update($updates);
-        
+
         return back();
     }
 

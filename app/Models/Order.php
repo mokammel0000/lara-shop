@@ -10,15 +10,15 @@ class Order extends Model
 {
     use HasFactory;
 
-    const STATUS_NEW = 1;
-    const STATUS_IN_PROGRESS = 2;
-    const STATUS_SHIPPED = 3;
-    const STATUS_PAID = 4;
-    const STATUS_CANCELED = 5;
-    const STATUS_REJECTED = 6;
+    public const STATUS_NEW = 1;
+    public const STATUS_IN_PROGRESS = 2;
+    public const STATUS_SHIPPED = 3;
+    public const STATUS_PAID = 4;
+    public const STATUS_CANCELED = 5;
+    public const STATUS_REJECTED = 6;
 
-    const PAYMENT_CASH_ON_DELVIREY = 1;
-    const PAYMENT_PAYPAL = 2;
+    public const PAYMENT_CASH_ON_DELVIREY = 1;
+    public const PAYMENT_PAYPAL = 2;
 
 
 
@@ -35,9 +35,9 @@ class Order extends Model
         'coupon_id'
     ];
 
-    
+
     // Apending values to Json....
-    // THESE ARE A NEW FEATURES THAT WE ADD IT TO THE MODEL, 
+    // THESE ARE A NEW FEATURES THAT WE ADD IT TO THE MODEL,
     // THESE ARN'T A FIELDS IN THE TABLE IN DB....
 
     protected $appends = ['status_text', 'payment_method_text'];
@@ -45,32 +45,32 @@ class Order extends Model
     protected function statusText(): Attribute
     {
         return new Attribute(
-            get: function(){
+            get: function () {
                 switch ($this->status) {
                     case self::STATUS_NEW :  // == case 1:
-                        return 'New Order';  
+                        return 'New Order';
                         break;               // there is no need for this line, because we use return, it will break the method
-                    
-                        case self::STATUS_IN_PROGRESS :
+
+                    case self::STATUS_IN_PROGRESS :
                         return 'Preparing Order';
                         break;
-                    
+
                     case self::STATUS_SHIPPED :
                         return 'Order Shipped';
                         break;
-                    
+
                     case self::STATUS_PAID :
                         return 'Paid is done';
                         break;
-                    
+
                     case self::STATUS_CANCELED :
                         return 'Order is cancelled';
                         break;
-                    
+
                     case self::STATUS_REJECTED :
                         return 'Order is Rejected';
                         break;
-                    
+
                     default:
                         'there is something wrong';
                         break;
@@ -82,16 +82,16 @@ class Order extends Model
     protected function paymentMethodText(): Attribute
     {
         return new Attribute(
-            get: function(){
+            get: function () {
                 switch ($this->payment_method) {
                     case self::PAYMENT_CASH_ON_DELVIREY :  // == case 1:
                         return 'cash on deleviry';
                         break;
-                    
+
                     case self::PAYMENT_PAYPAL :  // == case 1:
                         return 'paypal';
                         break;
-                    
+
                     default:
                         'another way';
                         break;
@@ -99,14 +99,14 @@ class Order extends Model
             }
         );
     }
-   //------------------------------------------------------
+    //------------------------------------------------------
 
 
     // Relation
     public function products()
     {
-        return $this->belongsToMany(product::class)->withPivot( ['quantity', 'price', 'total']);
-    } 
+        return $this->belongsToMany(product::class)->withPivot(['quantity', 'price', 'total']);
+    }
     // the relation that return the products that belongs to this order
 
     public function user()

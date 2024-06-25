@@ -11,13 +11,13 @@ class Photo extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 
-        'path', 
+        'name',
+        'path',
         'product_id'
     ];
 
-     
-    
+
+
     public function user()
     {
         return $this->belongsTo(product::class);

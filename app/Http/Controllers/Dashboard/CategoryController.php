@@ -8,17 +8,16 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    
     public function index()
     {
         // $cats = Category::all();  //all the resulsts will be showen in the same page
         // $cats = Category::get();
-        // $cats = Category::where('photo', '!=', 'null')->get();   
+        // $cats = Category::where('photo', '!=', 'null')->get();
         // $cats = Category::whereNotNull('photo')->get();
         // $cats = Category::whereNull('photo')->get();
         // $cats = Category::get();
 
-        
+
         $cats = Category::paginate(10);
 
         return view('dashboard.categories.index', compact('cats'));
@@ -47,14 +46,13 @@ class CategoryController extends Controller
 
         // $this->validate();
         $request->validate([
-            'name'=>'required',
-            'icon'=>'required',
-            'photo'=>'required| mimes:jpg,bmp,png',
+            'name' => 'required',
+            'icon' => 'required',
+            'photo' => 'required| mimes:jpg,bmp,png',
         ]);
 
         $filePath  = ' ';
-        if($request->file('photo')) 
-        {
+        if($request->file('photo')) {
             $fileName =  now()->timestamp . '_' . $request->file('photo')->getClientOriginalName();
             $filePath =  'uploads/' . $fileName;
 
@@ -79,7 +77,7 @@ class CategoryController extends Controller
         //              GO TO A VIEW
         // return view('dashboard.categories.create');
         // return view('dashboard.slider.index', compact('slides'));
-        
+
         //===========================================================
         //            REDIRECT TO A ROUTE
         // return redirect('/admin/categories/create');
@@ -105,12 +103,12 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'name'=>'required',
-            'icon'=>'required'
+            'name' => 'required',
+            'icon' => 'required'
         ]);
 
 
-        if($request->hasFile('photo')){
+        if($request->hasFile('photo')) {
             $fileName =  now()->timestamp . '_' . $request->file('photo')->getClientOriginalName();
             $filePath =  'uploads/' . $fileName;
 
@@ -126,14 +124,14 @@ class CategoryController extends Controller
         // }
 
         // $category->save();
-        
+
 
         //------------------------------------------------
         //UPDATING USING MASS ASSINGMENT
 
         // $category = Category::find($id);   //we don't need it because we have used Model Bind
         $inputs = $request->all();
-        if($request->hasFile('photo')){
+        if($request->hasFile('photo')) {
             $inputs['photo'] = $filePath;
 
         }
@@ -145,10 +143,10 @@ class CategoryController extends Controller
     public function destroy(string $id)
     {
         $category = Category::find($id);
-        
+
         Category::destroy($id);
 
         return back()->with('deleted', 'The '.$category->name.' Category has been deleted sucssesfully....');
-        // return redirect()->back()->withErrors($validator)->withInput();     
+        // return redirect()->back()->withErrors($validator)->withInput();
     }
 }

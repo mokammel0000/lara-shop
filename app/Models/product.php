@@ -13,16 +13,16 @@ class product extends Model
     protected $fillable = [
         'category_id',
         'sku',
-        'name', 
-        'description', 
-        'price', 
-        'stock', 
+        'name',
+        'description',
+        'price',
+        'stock',
         'views'
     ];
 
-    
+
     // Apending values to Json....
-    // THESE ARE A NEW FEATURES THAT WE ADD IT TO THE MODEL, 
+    // THESE ARE A NEW FEATURES THAT WE ADD IT TO THE MODEL,
     // THESE ARN'T A FIELDS IN THE TABLE IN DB....
 
     protected $appends = ['featured_photo', 'price_with_sign'];
@@ -30,10 +30,10 @@ class product extends Model
     protected function featuredPhoto(): Attribute
     {
         return new Attribute(
-            get: function(){
+            get: function () {
                 return $this->photos()->first()
-				? asset($this->photos()->first()->path)
-				: asset('uploads/Products/image-placeholder-base.png');
+                ? asset($this->photos()->first()->path)
+                : asset('uploads/Products/image-placeholder-base.png');
             }
         );
     }
@@ -41,7 +41,7 @@ class product extends Model
     protected function priceWithSign(): Attribute
     {
         return new Attribute(
-            get: function(){
+            get: function () {
                 return "$this->price $";
             }
         );
@@ -68,7 +68,7 @@ class product extends Model
 
 
 
-    // Event, listen to any product created 
+    // Event, listen to any product created
     // WHEN WE CREATE ANY PRODUCT, DO THIS EVENT AUTOMATICALLY...
     protected static function booted()
     {
@@ -92,7 +92,7 @@ class product extends Model
     // note that the product is the child of the category model so,
     // we use belongs to relation, also we name it categoryyyyy
 
-    
+
     public function photos()
     {
         return $this->hasmany(Photo::class);
@@ -101,8 +101,8 @@ class product extends Model
     // firstly, u should define this relation in the product model...
     // note that the product is the parent of the photos model so,
     // we use has many relation, also we name it photosssss....
-    
-    
+
+
     // public function carts()
     // {
     //     return $this->belongsToMany(Cart::class);
@@ -112,14 +112,14 @@ class product extends Model
     // make a report for the admin with the number of carts that has added this product
 
 
-    public function user()  
+    public function user()
     {
         return $this->belongsToMany(User::class)->withPivot(['rating', 'comment']);
-        
+
         /*
         return $this->belongsToMany(User::class)->withPivot(['rating', 'comment'])
                                                 ->wherePivotNotNull('comment');
-        
+
         return $this->belongsToMany(User::class)->withPivot(['rating', 'comment'])
                                                 ->as('comment')
                                                 ->wherePivotNotNull('comment');
@@ -128,16 +128,16 @@ class product extends Model
     // it returns User object,
     // and u can return the pivot attributes (comment and rating) that's located in product_user table.
 
-    // Important Notes: 
-        // The relation name is user, it returns user object, 
-        // we call it user because we will use it to return the user user, 
-        // then after calling it, u can fetch the comment from the pivot, [it don't return the comment directly...]
+    // Important Notes:
+    // The relation name is user, it returns user object,
+    // we call it user because we will use it to return the user user,
+    // then after calling it, u can fetch the comment from the pivot, [it don't return the comment directly...]
 
-        // so, u can name the function as you want, but don't forget what's the object that it will return.
+    // so, u can name the function as you want, but don't forget what's the object that it will return.
 
-        // u can to return specific records from the pivot table, 
-        // also u can return records from the pivot table in an ordered way, 
-        // also u can aliasing the pivot table and put the name that u want.
+    // u can to return specific records from the pivot table,
+    // also u can return records from the pivot table in an ordered way,
+    // also u can aliasing the pivot table and put the name that u want.
 
     public function flashDeals()
     {
@@ -145,5 +145,3 @@ class product extends Model
     }
     //--------------------------------------------------------------------------------------
 }
-
-

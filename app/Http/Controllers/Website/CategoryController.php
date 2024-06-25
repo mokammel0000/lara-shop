@@ -15,13 +15,13 @@ class CategoryController extends Controller
         // using the last query we can't paginate the products ...
 
         $category = Category::find($id);
-        
-                                        //in DB       //field 
+
+        //in DB       //field
         // $products = product::where('category_id' , $category->id)->paginate(10);
-        $products = product::where('category_id' , $id)->paginate(10);
-        
+        $products = product::where('category_id', $id)->paginate(10);
+
         $start = ($products->currentPage() - 1) * $products->perPage();
- 
+
         return view('website.category', compact('products', 'category', 'start'));
     }
 }

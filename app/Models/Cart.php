@@ -13,7 +13,7 @@ class Cart extends Model
         'user_id',
     ];
 
-    
+
     // Relation
     public function products()
     {

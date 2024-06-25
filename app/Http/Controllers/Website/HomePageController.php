@@ -17,12 +17,12 @@ class HomePageController extends Controller
 
         $slides = Slide::where('active', 1)->get();
         // $slides = Slide::where('active','!=',  0)->get();
-        
+
         $products = product::with('photos')->orderBy('sales', 'desc')->limit(6)->get();
 
-        $computers_products = product::with('photos')->where('category_id',1)->orderBy('sales', 'desc')->limit(6)->get();
-        
-        $laptops_products = product::with('photos')->where('category_id',2)->orderBy('sales', 'desc')->limit(6)->get();
+        $computers_products = product::with('photos')->where('category_id', 1)->orderBy('sales', 'desc')->limit(6)->get();
+
+        $laptops_products = product::with('photos')->where('category_id', 2)->orderBy('sales', 'desc')->limit(6)->get();
 
         $flash_deals = FlashDeal::with('product')->where('active', '1')->get();
 
