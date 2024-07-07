@@ -91,6 +91,17 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
+        // $category = Category::find($id);
+        // $category = Category::where('id', $id)->first();
+
+        // if(is_null($category)) {
+        // return back();
+        // return to_route('categories.index');
+        // }
+
+        // $category = Category::findOrFail($id);
+
+        // or you can use Model Binding like the following:
         return view('dashboard.categories.show', compact('category'));
     }
 
@@ -140,11 +151,11 @@ class CategoryController extends Controller
         return back()->with('uploaded', 'The Category has been Uploaded succesfully');
     }
 
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        $category = Category::find($id);
+        // $category->delete();
 
-        Category::destroy($id);
+        Category::destroy($category->id);
 
         return back()->with('deleted', 'The '.$category->name.' Category has been deleted sucssesfully....');
         // return redirect()->back()->withErrors($validator)->withInput();

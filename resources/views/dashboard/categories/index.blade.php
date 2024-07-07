@@ -60,19 +60,14 @@ Categories
                                 </i>
                             </td>
                             <td>
-                                <form action="{{ url('admin/categories/'. $category->id) }}" method="POST">
-
-                                    <a href="{{ url("admin/categories/$category->id") }}" class="btn btn-sm btn-info"> View </a>
-                                    
-                                           {{--  {{url('admin/categories/'. $category->id.'/'.'edit/')}} --}}
-                                    <a href="{{ url("admin/categories/$category->id/edit") }}" class="btn btn-sm btn-warning"> Edit </a>
-
-
+                                <a href="{{ url("admin/categories/$category->id") }}" class="btn btn-sm btn-info"> View </a>
+                                {{--  {{url('admin/categories/'. $category->id.'/'.'edit/')}} --}}
+                                <a href="{{ url("admin/categories/$category->id/edit") }}" class="btn btn-sm btn-warning"> Edit </a>
+                                <form action="{{ url('admin/categories/'. $category->id) }}" method="POST" style="display: inline">
                                     @csrf
                                     @method('Delete')
                                     <button class="btn btn-sm btn-danger" type="submit"> Delete</button>
                                 </form>
-
                             </td>
                         </tr>
                         @endforeach
