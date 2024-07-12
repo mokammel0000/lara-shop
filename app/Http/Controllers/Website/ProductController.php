@@ -14,7 +14,6 @@ class ProductController extends Controller
 {
     public function show($id)
     {
-
         $ratings_for_the_post = [];
         $reviews = ProductReview::where('user_id', auth()->id())->where('product_id', $id)->get();
         foreach ($reviews as $product_review) {
@@ -23,7 +22,6 @@ class ProductController extends Controller
             }
         }
         $is_rated_previously = !empty($ratings_for_the_post);
-
 
         // $product = product::with([
         //     'category',
@@ -50,15 +48,13 @@ class ProductController extends Controller
         // so, we can't calculate the product rate with this value
         // we must create a new varible that have all product records which have a rating value
 
-
         // dd($product);                 // product + it's attributes + it's relations + the pivot attributes for each relation
         // dd($product->category);    // the category relation and it's attributes
         // dd($product->photos);      // the product relation and it's attributes
         // dd($product->user);        // the user relation and it's attributes, and the pivot attributes (including comment)
 
 
-
-        // To calculate Product Average Rate:
+        // calculating Product Average Rate:
         // -u can do it usign Elqouent ORM (make a model for the Pivot table) and return it's attributes,
         // -u can do it usign Query Builder,
         // -u can calculate it manually (get the sum of all ratings and count them, then devide sum/count to calculate the average)
@@ -76,11 +72,9 @@ class ProductController extends Controller
         // $productrating =round( ProductReview::where('product_id', $id)->average('rating'),  1);
         $productrating = round(ProductReview::where('product_id', $id)->avg('rating'), 1);
 
-
-
         // dd($productrating);
 
-        // OR GET ALL THE RECORDS AND CHCCK -ON THE VIEW- WHO HAVE RATING AND WHO HAVE A COMMENT
+        // or get all the records and check -on the view- who have rating and who have commnts.
 
 
         // $product->views = $product->views += 1;
@@ -102,12 +96,12 @@ class ProductController extends Controller
         $keyword = request()->keyword;
         $category_id = request()->category_id;
 
-        // THIS IS A TIPYCALL SEARCH, IT'S NOT EFFECTIVE....
+        // the following query is not really good:
         // $products = product::where('name', '=', $keyword)
         //                     ->orWhere('description', '=', $keyword)
         //                     ->get();
 
-        // THIS IS ALSO A TIPYCALL SEARCH, IT'S NOT EFFECTIVE.... YOU SHOULD ADD PLACEHOLDERS
+        // this is also not very good, you must add placeholders:
         // $products = product::where('name', 'LIKE', $keyword)
         //                     ->orWhere('description', 'LIKE', $keyword)
         //                     ->get();

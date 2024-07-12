@@ -68,8 +68,8 @@ class product extends Model
 
 
 
-    // Event, listen to any product created
-    // WHEN WE CREATE ANY PRODUCT, DO THIS EVENT AUTOMATICALLY...
+    // listen to any product created
+    // when any product created, automatically perform this event
     protected static function booted()
     {
         static::created(function ($product) {
